@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.preprocessingPanel = new System.Windows.Forms.Panel();
+            this.ImportDG = new System.Windows.Forms.DataGridView();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -44,17 +44,20 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.ImportFile = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.ImportButton = new System.Windows.Forms.Button();
+            this.preprocessingPanel = new System.Windows.Forms.Panel();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImportDG)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.ImportDG);
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label7);
@@ -69,26 +72,27 @@
             this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.ImportFile);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.ImportButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 611);
             this.panel1.TabIndex = 0;
             // 
-            // preprocessingPanel
+            // ImportDG
             // 
-            this.preprocessingPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.preprocessingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.preprocessingPanel.Location = new System.Drawing.Point(284, 0);
-            this.preprocessingPanel.Name = "preprocessingPanel";
-            this.preprocessingPanel.Size = new System.Drawing.Size(883, 611);
-            this.preprocessingPanel.TabIndex = 1;
+            this.ImportDG.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ImportDG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ImportDG.Location = new System.Drawing.Point(14, 62);
+            this.ImportDG.Name = "ImportDG";
+            this.ImportDG.RowHeadersWidth = 20;
+            this.ImportDG.RowTemplate.Height = 24;
+            this.ImportDG.Size = new System.Drawing.Size(255, 145);
+            this.ImportDG.TabIndex = 0;
             // 
             // richTextBox1
             // 
@@ -154,16 +158,16 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(102, 570);
+            this.textBox5.Location = new System.Drawing.Point(102, 567);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(167, 22);
             this.textBox5.TabIndex = 34;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(14, 569);
+            this.button5.Location = new System.Drawing.Point(14, 563);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.Size = new System.Drawing.Size(75, 30);
             this.button5.TabIndex = 33;
             this.button5.Text = "Export RS";
             this.button5.UseVisualStyleBackColor = true;
@@ -209,12 +213,12 @@
             this.textBox3.Size = new System.Drawing.Size(167, 22);
             this.textBox3.TabIndex = 28;
             // 
-            // textBox2
+            // ImportFile
             // 
-            this.textBox2.Location = new System.Drawing.Point(102, 20);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(167, 22);
-            this.textBox2.TabIndex = 27;
+            this.ImportFile.Location = new System.Drawing.Point(102, 23);
+            this.ImportFile.Name = "ImportFile";
+            this.ImportFile.Size = new System.Drawing.Size(167, 22);
+            this.ImportFile.TabIndex = 27;
             // 
             // label1
             // 
@@ -235,39 +239,35 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(14, 189);
+            this.checkBox1.Location = new System.Drawing.Point(14, 213);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(113, 20);
             this.checkBox1.TabIndex = 24;
             this.checkBox1.Text = "Free Vibration";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
+            // ImportButton
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(14, 61);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(255, 111);
-            this.tableLayoutPanel1.TabIndex = 23;
+            this.ImportButton.Location = new System.Drawing.Point(14, 19);
+            this.ImportButton.Name = "ImportButton";
+            this.ImportButton.Size = new System.Drawing.Size(75, 30);
+            this.ImportButton.TabIndex = 22;
+            this.ImportButton.Text = "Import";
+            this.ImportButton.UseVisualStyleBackColor = true;
+            this.ImportButton.Click += new System.EventHandler(this.ImportButton_Click);
             // 
-            // button4
+            // preprocessingPanel
             // 
-            this.button4.Location = new System.Drawing.Point(14, 19);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 22;
-            this.button4.Text = "Import";
-            this.button4.UseVisualStyleBackColor = true;
+            this.preprocessingPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.preprocessingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.preprocessingPanel.Location = new System.Drawing.Point(284, 0);
+            this.preprocessingPanel.Name = "preprocessingPanel";
+            this.preprocessingPanel.Size = new System.Drawing.Size(883, 611);
+            this.preprocessingPanel.TabIndex = 1;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Preprocessing
             // 
@@ -279,6 +279,7 @@
             this.Size = new System.Drawing.Size(1167, 611);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImportDG)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -301,11 +302,12 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox ImportFile;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button ImportButton;
+        private System.Windows.Forms.DataGridView ImportDG;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

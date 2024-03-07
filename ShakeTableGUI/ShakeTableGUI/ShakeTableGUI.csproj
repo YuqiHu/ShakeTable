@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImportHelper.cs" />
     <Compile Include="ShakeTableGUI.cs">
       <SubType>Form</SubType>
     </Compile>
