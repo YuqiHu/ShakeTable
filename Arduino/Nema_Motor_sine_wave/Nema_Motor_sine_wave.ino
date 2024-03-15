@@ -4,22 +4,22 @@
 #define ON_MOVE false 
 #define PI 3.1415926535897932384626433832795
 
-const float time_step = 0.00450869073896708; // modify this time step
+const double time_step_ms = 4.50869073896708; // modify this time step in ms
 
 // Check the pin number on the Arduino board
 const byte stepPin = 2;
 const byte dirPin = 4;
 //const byte cwPin = 11;
 //const byte ccwPin = 12;
-// 25000 steps = 1 revolution = 7.2 cm of shake table movement
+// 200` steps = 1 revolution = 7.2 cm of shake table movement
 const int steps_per_revolution = 200;
 
-const int num_steps_per_cm = steps_per_revolution/7.2;
+const double num_steps_per_cm = steps_per_revolution/7.2;
 int counter = 0;
 unsigned long timer = 0;
 
 // Displacement data
-const PROGMEM float disp_data[] = {
+const PROGMEM double disp_data[] = {
   0,
   0,
   0,
@@ -7242,7 +7242,6 @@ const PROGMEM float disp_data[] = {
   0.000680017901355087,
   0.000680123512346968,
   0.000680214877283517,
-
 };
 
 MoToStepper stepper(steps_per_revolution, STEPDIR); // steps per revolution, mode
@@ -7252,12 +7251,11 @@ bool moving = false;
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(500000);
   pinMode(11, OUTPUT);
   
   stepper.attach(stepPin, dirPin);
   stepper.setSpeedSteps(steps_per_revolution);  // = 25000 steps/second (steps in 10 seconds)
-  stepper.setRampLen(10);
   stepper.setZero();
 }
 
@@ -7284,64 +7282,38 @@ void loop()
     }
     Serial.println(digitalRead(11));
   }
-
-  //Serial.println(digitalRead(11));
-  if (digitalRead(11) == HIGH)
-  {
+  
+  if (mode == ON_MOVE && digitalRead(11) == HIGH) {
+    if (!moving) {
       // Calculate steps and speed based of data
-      long num_steps = num_steps_per_cm * disp_data[counter];
+      double pos_from;
+      double pos_to;
+      memcpy_P(&pos_from, &disp_data[counter], sizeof(double));
+      memcpy_P(&pos_to, &disp_data[counter+1], sizeof(double));
+      double num_steps = num_steps_per_cm * (pos_to - pos_from);
       Serial.println("Data");
-      Serial.println(num_steps);
-      Serial.println(disp_data[counter]);
+      Serial.println(counter);
       Serial.println(num_steps);
 
-      long steps_per_secs = num_steps/time_step;
-      Serial.println(time_step);
-      Serial.println(steps_per_secs);
+      double steps_per_msecs = num_steps/time_step_ms;
+      Serial.println(steps_per_msecs);
+
+      double steps_per_sec = steps_per_msecs * 10000;
       
-  //    while (mode == ON_MOVE){
-        // how many steps, speed (steps/sec * 10, 2000 = 200 sps)
-    //    moveStepper(num_steps, steps_per_secs * 10);
-        // time between move in millis() 
-      //}
-      holdup(0);
-      counter++;
-  }
-  if (counter >= 7223){
-    Serial.println("OFF");
-    digitalWrite(11, LOW);
-  }
-}
-
-void moveStepper(long stepsToMove, long stepSpeed)
-{
-  if (mode == ON_MOVE) // time to go?  
-  {
-    if (moving == false) // stopped, set speed and steps. set to move
-    {
-      stepper.setSpeedSteps(stepSpeed);
-      stepper.move(stepsToMove);
+      stepper.setSpeedSteps(steps_per_sec);
+      stepper.move(num_steps);
       moving = true;
-    }
-    else // in motion, check for ending position.  mode to hold on end
-    {
-      if (stepper.moving() == 0)
-      {
-        mode = HOLDING;
+      counter++;
+    } else {
+      if (stepper.moving() == 0) {
         moving = false;
-        timer = millis(); // record current time
+        timer = millis(); // Record current time
       }
     }
   }
-}
-
-void holdup(unsigned long stepDelay) // dwell between moves
-{
-  if (mode == HOLDING)
-  {
-    if (millis() - timer >= stepDelay)
-    {
-      mode = ON_MOVE; // time to move again
-    }
+  if (counter >= sizeof(disp_data) / sizeof(disp_data[0]) - 1){
+    Serial.println("OFF");
+    digitalWrite(11, LOW);
+    counter = 0;
   }
 }
