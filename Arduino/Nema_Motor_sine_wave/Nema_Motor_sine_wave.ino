@@ -6,17 +6,8 @@
 
 const double time_step_ms = 4.50869073896708; // modify this time step in ms
 
-// Check the pin number on the Arduino board
-const byte stepPin = 2;
-const byte dirPin = 4;
-//const byte cwPin = 11;
-//const byte ccwPin = 12;
-// 200` steps = 1 revolution = 7.2 cm of shake table movement
-const int steps_per_revolution = 200;
-
-const double num_steps_per_cm = steps_per_revolution/7.2;
-int counter = 0;
-unsigned long timer = 0;
+// 200 steps = 1 revolution = 7.2 cm of shake table movement
+const int steps_per_revolution = 1600;
 
 // Displacement data
 const PROGMEM double disp_data[] = {
@@ -7244,6 +7235,16 @@ const PROGMEM double disp_data[] = {
   0.000680214877283517,
 };
 
+// Check the pin number on the Arduino board
+const byte stepPin = 2;
+const byte dirPin = 4;
+//const byte cwPin = 11;
+//const byte ccwPin = 12;
+
+const double num_steps_per_cm = steps_per_revolution/7.2;
+int counter = 0;
+unsigned long timer = 0;
+
 MoToStepper stepper(steps_per_revolution, STEPDIR); // steps per revolution, mode
 
 bool mode = ON_MOVE;
@@ -7282,15 +7283,15 @@ void loop()
     }
     Serial.println(digitalRead(11));
   }
+
+  double pos_from;
   
   if (mode == ON_MOVE && digitalRead(11) == HIGH) {
-    if (!moving) {
       // Calculate steps and speed based of data
-      double pos_from;
-      double pos_to;
+      
+      timer = millis(); // Record current time
       memcpy_P(&pos_from, &disp_data[counter], sizeof(double));
-      memcpy_P(&pos_to, &disp_data[counter+1], sizeof(double));
-      double num_steps = num_steps_per_cm * (pos_to - pos_from);
+      double num_steps = num_steps_per_cm * (pos_from);
       Serial.println("Data");
       Serial.println(counter);
       Serial.println(num_steps);
@@ -7298,22 +7299,17 @@ void loop()
       double steps_per_msecs = num_steps/time_step_ms;
       Serial.println(steps_per_msecs);
 
-      double steps_per_sec = steps_per_msecs * 10000;
+      double steps_per_sec = steps_per_msecs * 1000;
       
-      stepper.setSpeedSteps(steps_per_sec);
+      stepper.setSpeedSteps(steps_per_sec,0);
       stepper.move(num_steps);
-      moving = true;
       counter++;
-    } else {
-      if (stepper.moving() == 0) {
-        moving = false;
-        timer = millis(); // Record current time
-      }
-    }
+      delay(time_step_ms - millis() + timer);
   }
   if (counter >= sizeof(disp_data) / sizeof(disp_data[0]) - 1){
     Serial.println("OFF");
     digitalWrite(11, LOW);
+    mode = HOLDING;
     counter = 0;
   }
 }
