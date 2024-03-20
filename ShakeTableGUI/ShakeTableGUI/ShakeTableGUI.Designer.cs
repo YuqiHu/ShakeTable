@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.NameBar = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.Menu = new System.Windows.Forms.Panel();
@@ -35,6 +36,7 @@
             this.TableControl = new System.Windows.Forms.Button();
             this.Preprocessing = new System.Windows.Forms.Button();
             this.PanelContainer = new System.Windows.Forms.Panel();
+            this.Arduino = new System.IO.Ports.SerialPort(this.components);
             this.NameBar.SuspendLayout();
             this.Menu.SuspendLayout();
             this.SuspendLayout();
@@ -119,6 +121,12 @@
             this.PanelContainer.Size = new System.Drawing.Size(1167, 611);
             this.PanelContainer.TabIndex = 2;
             // 
+            // Arduino
+            // 
+            this.Arduino.BaudRate = 500000;
+            this.Arduino.PortName = "COM3";
+            this.Arduino.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.Arduino_DataReceived);
+            // 
             // ShakeTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -129,6 +137,7 @@
             this.Controls.Add(this.NameBar);
             this.Name = "ShakeTable";
             this.Text = "University of Toronto Seismic Design Team Shake Table";
+            this.Load += new System.EventHandler(this.ShakeTable_Load);
             this.NameBar.ResumeLayout(false);
             this.NameBar.PerformLayout();
             this.Menu.ResumeLayout(false);
@@ -145,6 +154,7 @@
         private System.Windows.Forms.Button Preprocessing;
         private System.Windows.Forms.Button PostProcessing;
         private System.Windows.Forms.Button TableControl;
+        private System.IO.Ports.SerialPort Arduino;
     }
 }
 

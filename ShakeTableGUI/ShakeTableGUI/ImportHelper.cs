@@ -34,7 +34,8 @@ namespace ShakeTableGUI
 
         private static void AddRowToTable(string[] valueCollaction, char delimiter, ref DataTable dt)
         {
-            for(int i = 1; i < valueCollaction.Length; i++)
+            // i = 0, read from the first line of the data
+            for (int i = 0; i < valueCollaction.Length; i++)
             {
                 string[] values = valueCollaction[i].Split(delimiter);
                 DataRow dr = dt.NewRow();

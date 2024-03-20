@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A03743E9-4391-4784-A162-C5B011CCF587}|GUI.csproj|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\postprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A03743E9-4391-4784-A162-C5B011CCF587}|GUI.csproj|solutionrelative:postprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\Preprocessing.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Preprocessing.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A03743E9-4391-4784-A162-C5B011CCF587}|GUI.csproj|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\preprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A03743E9-4391-4784-A162-C5B011CCF587}|GUI.csproj|solutionrelative:preprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\Preprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Preprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A03743E9-4391-4784-A162-C5B011CCF587}|GUI.csproj|c:\\users\\yuqih\\documents\\github\\shaketable\\gui\\shaketablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A03743E9-4391-4784-A162-C5B011CCF587}|GUI.csproj|solutionrelative:shaketablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\ShakeTableController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShakeTableController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A03743E9-4391-4784-A162-C5B011CCF587}|GUI.csproj|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\shaketablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A03743E9-4391-4784-A162-C5B011CCF587}|GUI.csproj|solutionrelative:shaketablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\ShakeTableController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShakeTableController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\Postprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Postprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,24 +30,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "Preprocessing.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\Preprocessing.Designer.cs",
+              "RelativeDocumentMoniker": "Preprocessing.Designer.cs",
+              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\Preprocessing.Designer.cs",
+              "RelativeToolTip": "Preprocessing.Designer.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAKMBAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T00:28:11.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ShakeTableController.cs",
               "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\ShakeTableController.cs",
               "RelativeDocumentMoniker": "ShakeTableController.cs",
               "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\ShakeTableController.cs",
               "RelativeToolTip": "ShakeTableController.cs",
-              "ViewState": "AQIAAEAAAAAAAAAAAADwv2AAAAAJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGAAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-04T17:48:34.597Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ShakeTableController.cs [Design]",
               "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\ShakeTableController.cs",
               "RelativeDocumentMoniker": "ShakeTableController.cs",
@@ -59,15 +76,15 @@
               "Title": "Preprocessing.cs [Design]",
               "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\Preprocessing.cs",
               "RelativeDocumentMoniker": "Preprocessing.cs",
-              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\Preprocessing.cs [Design]*",
-              "RelativeToolTip": "Preprocessing.cs [Design]*",
+              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\Preprocessing.cs [Design]",
+              "RelativeToolTip": "Preprocessing.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-01-04T04:12:39.84Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Postprocessing.cs [Design]",
               "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\GUI\\Postprocessing.cs",
               "RelativeDocumentMoniker": "Postprocessing.cs",

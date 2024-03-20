@@ -30,18 +30,28 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox_comPort = new System.Windows.Forms.ComboBox();
+            this.COM_PORT = new System.Windows.Forms.Label();
+            this.ImportFile = new System.Windows.Forms.TextBox();
+            this.ImportButton = new System.Windows.Forms.Button();
+            this.FileProperties = new System.Windows.Forms.RichTextBox();
             this.Stop = new System.Windows.Forms.Button();
             this.Start = new System.Windows.Forms.Button();
             this.Backtoorigin = new System.Windows.Forms.Button();
             this.Calibration = new System.Windows.Forms.Button();
             this.ControlPanel = new System.Windows.Forms.Panel();
-            this.FileProperties = new System.Windows.Forms.RichTextBox();
-            this.arduino = new System.IO.Ports.SerialPort(this.components);
+            this.richTextBox_textReceiver = new System.Windows.Forms.RichTextBox();
+            this.Arduino_Table_Control = new System.IO.Ports.SerialPort(this.components);
             this.panel1.SuspendLayout();
+            this.ControlPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.comboBox_comPort);
+            this.panel1.Controls.Add(this.COM_PORT);
+            this.panel1.Controls.Add(this.ImportFile);
+            this.panel1.Controls.Add(this.ImportButton);
             this.panel1.Controls.Add(this.FileProperties);
             this.panel1.Controls.Add(this.Stop);
             this.panel1.Controls.Add(this.Start);
@@ -52,6 +62,48 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 611);
             this.panel1.TabIndex = 1;
+            // 
+            // comboBox_comPort
+            // 
+            this.comboBox_comPort.FormattingEnabled = true;
+            this.comboBox_comPort.Location = new System.Drawing.Point(102, 258);
+            this.comboBox_comPort.Name = "comboBox_comPort";
+            this.comboBox_comPort.Size = new System.Drawing.Size(167, 24);
+            this.comboBox_comPort.TabIndex = 31;
+            // 
+            // COM_PORT
+            // 
+            this.COM_PORT.AutoSize = true;
+            this.COM_PORT.Location = new System.Drawing.Point(11, 263);
+            this.COM_PORT.Name = "COM_PORT";
+            this.COM_PORT.Size = new System.Drawing.Size(84, 16);
+            this.COM_PORT.TabIndex = 30;
+            this.COM_PORT.Text = "COM PORT: ";
+            // 
+            // ImportFile
+            // 
+            this.ImportFile.Location = new System.Drawing.Point(102, 308);
+            this.ImportFile.Name = "ImportFile";
+            this.ImportFile.Size = new System.Drawing.Size(167, 22);
+            this.ImportFile.TabIndex = 29;
+            // 
+            // ImportButton
+            // 
+            this.ImportButton.Location = new System.Drawing.Point(14, 306);
+            this.ImportButton.Name = "ImportButton";
+            this.ImportButton.Size = new System.Drawing.Size(75, 30);
+            this.ImportButton.TabIndex = 28;
+            this.ImportButton.Text = "Import";
+            this.ImportButton.UseVisualStyleBackColor = true;
+            this.ImportButton.Click += new System.EventHandler(this.ImportButton_Click);
+            // 
+            // FileProperties
+            // 
+            this.FileProperties.Location = new System.Drawing.Point(0, 348);
+            this.FileProperties.Name = "FileProperties";
+            this.FileProperties.Size = new System.Drawing.Size(284, 263);
+            this.FileProperties.TabIndex = 4;
+            this.FileProperties.Text = " File: \n Name: \n Data Type: \n Unit: \n Sacle Factor: \n\n\n";
             // 
             // Stop
             // 
@@ -102,24 +154,26 @@
             // ControlPanel
             // 
             this.ControlPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ControlPanel.Controls.Add(this.richTextBox_textReceiver);
             this.ControlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ControlPanel.Location = new System.Drawing.Point(284, 0);
             this.ControlPanel.Name = "ControlPanel";
             this.ControlPanel.Size = new System.Drawing.Size(883, 611);
             this.ControlPanel.TabIndex = 2;
             // 
-            // FileProperties
+            // richTextBox_textReceiver
             // 
-            this.FileProperties.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FileProperties.Location = new System.Drawing.Point(0, 244);
-            this.FileProperties.Name = "FileProperties";
-            this.FileProperties.Size = new System.Drawing.Size(284, 367);
-            this.FileProperties.TabIndex = 4;
-            this.FileProperties.Text = " File: \n Name: \n Data Type: \n Unit: \n Sacle Factor: \n\n\n";
+            this.richTextBox_textReceiver.Location = new System.Drawing.Point(20, 174);
+            this.richTextBox_textReceiver.Name = "richTextBox_textReceiver";
+            this.richTextBox_textReceiver.Size = new System.Drawing.Size(836, 414);
+            this.richTextBox_textReceiver.TabIndex = 0;
+            this.richTextBox_textReceiver.Text = "";
             // 
-            // arduino
+            // Arduino_Table_Control
             // 
-            this.arduino.PortName = "COM3";
+            this.Arduino_Table_Control.BaudRate = 500000;
+            this.Arduino_Table_Control.PortName = "COM3";
+            this.Arduino_Table_Control.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.Arduino_Table_Control_DataReceived);
             // 
             // TableControl
             // 
@@ -130,6 +184,8 @@
             this.Name = "TableControl";
             this.Size = new System.Drawing.Size(1167, 611);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.ControlPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -143,6 +199,11 @@
         private System.Windows.Forms.Button Backtoorigin;
         private System.Windows.Forms.Button Calibration;
         private System.Windows.Forms.RichTextBox FileProperties;
-        private System.IO.Ports.SerialPort arduino;
+        private System.Windows.Forms.TextBox ImportFile;
+        private System.Windows.Forms.Button ImportButton;
+        private System.Windows.Forms.ComboBox comboBox_comPort;
+        private System.Windows.Forms.Label COM_PORT;
+        private System.Windows.Forms.RichTextBox richTextBox_textReceiver;
+        private System.IO.Ports.SerialPort Arduino_Table_Control;
     }
 }
