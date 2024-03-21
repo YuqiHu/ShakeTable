@@ -1,7 +1,6 @@
 C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\bin\Debug\ShakeTableGUI.exe.config
 C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\bin\Debug\ShakeTableGUI.exe
 C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\bin\Debug\ShakeTableGUI.pdb
-C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\bin\Debug\Guna.UI2.dll
 C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\obj\Debug\ShakeTableGUI.csproj.AssemblyReference.cache
 C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\obj\Debug\ShakeTableGUI.ShakeTable.resources
 C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\obj\Debug\ShakeTableGUI.Properties.Resources.resources
@@ -13,3 +12,7 @@ C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\obj\Debug
 C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\obj\Debug\ShakeTab.5F6E8E16.Up2Date
 C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\obj\Debug\ShakeTableGUI.exe
 C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\obj\Debug\ShakeTableGUI.pdb
+C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\bin\Debug\MathNet.Numerics.dll
+C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\bin\Debug\System.ValueTuple.dll
+C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\bin\Debug\MathNet.Numerics.xml
+C:\Users\yuqih\Documents\GitHub\ShakeTable\ShakeTableGUI\ShakeTableGUI\bin\Debug\System.ValueTuple.xml

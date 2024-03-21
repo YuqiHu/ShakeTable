@@ -156,5 +156,10 @@ namespace ShakeTableGUI.UserControls
 
 
         }
+
+        private void RS_type_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

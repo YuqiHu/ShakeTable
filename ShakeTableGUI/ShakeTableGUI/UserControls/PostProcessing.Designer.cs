@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.RS_type_box = new System.Windows.Forms.ComboBox();
             this.damping_ratio = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -49,21 +50,26 @@
             this.period_step = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.max_period_text = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.ExportFSButton = new System.Windows.Forms.Button();
             this.postProcessingPanel = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.RS_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.RS_type_box = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.postProcessingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RS_chart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.RS_type_box);
             this.panel1.Controls.Add(this.damping_ratio);
             this.panel1.Controls.Add(this.label8);
@@ -79,7 +85,6 @@
             this.panel1.Controls.Add(this.period_step);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.max_period_text);
-            this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.ExportFSButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -87,6 +92,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 611);
             this.panel1.TabIndex = 2;
+            // 
+            // RS_type_box
+            // 
+            this.RS_type_box.FormattingEnabled = true;
+            this.RS_type_box.Location = new System.Drawing.Point(103, 231);
+            this.RS_type_box.Name = "RS_type_box";
+            this.RS_type_box.Size = new System.Drawing.Size(166, 24);
+            this.RS_type_box.TabIndex = 57;
+            this.RS_type_box.SelectedIndexChanged += new System.EventHandler(this.RS_type_box_SelectedIndexChanged);
             // 
             // damping_ratio
             // 
@@ -151,14 +165,14 @@
             // 
             // exportRS
             // 
-            this.exportRS.Location = new System.Drawing.Point(103, 302);
+            this.exportRS.Location = new System.Drawing.Point(103, 272);
             this.exportRS.Name = "exportRS";
             this.exportRS.Size = new System.Drawing.Size(167, 22);
             this.exportRS.TabIndex = 49;
             // 
             // exportRS_butt
             // 
-            this.exportRS_butt.Location = new System.Drawing.Point(15, 300);
+            this.exportRS_butt.Location = new System.Drawing.Point(15, 270);
             this.exportRS_butt.Name = "exportRS_butt";
             this.exportRS_butt.Size = new System.Drawing.Size(75, 30);
             this.exportRS_butt.TabIndex = 48;
@@ -207,26 +221,6 @@
             this.max_period_text.Size = new System.Drawing.Size(167, 22);
             this.max_period_text.TabIndex = 43;
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(15, 360);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 8;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.092564F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.092561F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.092561F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.092561F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.092561F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.092562F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.088924F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.088924F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(255, 173);
-            this.tableLayoutPanel2.TabIndex = 20;
-            // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(102, 565);
@@ -256,49 +250,72 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.chart1.Location = new System.Drawing.Point(0, 311);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(883, 300);
             this.chart1.TabIndex = 3;
             this.chart1.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            title1.Name = "Title1";
-            title1.Text = "Fourier Analysis";
-            this.chart1.Titles.Add(title1);
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            title3.Name = "Title1";
+            title3.Text = "Fourier Analysis";
+            this.chart1.Titles.Add(title3);
             // 
             // RS_chart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.RS_chart.ChartAreas.Add(chartArea2);
+            chartArea4.Name = "ChartArea1";
+            this.RS_chart.ChartAreas.Add(chartArea4);
             this.RS_chart.Dock = System.Windows.Forms.DockStyle.Top;
             this.RS_chart.Location = new System.Drawing.Point(0, 0);
             this.RS_chart.Name = "RS_chart";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Name = "Series1";
-            this.RS_chart.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Name = "Series1";
+            this.RS_chart.Series.Add(series4);
             this.RS_chart.Size = new System.Drawing.Size(883, 300);
             this.RS_chart.TabIndex = 2;
             this.RS_chart.Text = "chart1";
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            title2.Name = "Title1";
-            title2.Text = "Acceleration Response Spectrum";
-            this.RS_chart.Titles.Add(title2);
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            title4.Name = "Title1";
+            title4.Text = "Response Spectrum";
+            this.RS_chart.Titles.Add(title4);
             // 
-            // RS_type_box
+            // label1
             // 
-            this.RS_type_box.FormattingEnabled = true;
-            this.RS_type_box.Location = new System.Drawing.Point(103, 219);
-            this.RS_type_box.Name = "RS_type_box";
-            this.RS_type_box.Size = new System.Drawing.Size(166, 24);
-            this.RS_type_box.TabIndex = 57;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 234);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 16);
+            this.label1.TabIndex = 58;
+            this.label1.Text = "Type";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(12, 209);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(204, 16);
+            this.label9.TabIndex = 59;
+            this.label9.Text = "Type of Response Spectrum";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersVisible = false;
+            this.dataGridView1.Location = new System.Drawing.Point(14, 367);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 20;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(255, 181);
+            this.dataGridView1.TabIndex = 60;
             // 
             // PostProcessing
             // 
@@ -313,6 +330,7 @@
             this.postProcessingPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RS_chart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -321,7 +339,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel postProcessingPanel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button ExportFSButton;
         private System.Windows.Forms.TextBox damping_ratio;
@@ -341,5 +358,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.DataVisualization.Charting.Chart RS_chart;
         private System.Windows.Forms.ComboBox RS_type_box;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

@@ -36,15 +36,18 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.ExportFSButton = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             this.ImportDG = new System.Windows.Forms.DataGridView();
             this.ImportFile = new System.Windows.Forms.TextBox();
             this.ImportButton = new System.Windows.Forms.Button();
             this.preprocessingPanel = new System.Windows.Forms.Panel();
             this.Time_Disp_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ta_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImportDG)).BeginInit();
             this.preprocessingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Time_Disp_chart)).BeginInit();
@@ -53,7 +56,10 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.ExportFSButton);
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.ImportDG);
             this.panel1.Controls.Add(this.ImportFile);
             this.panel1.Controls.Add(this.ImportButton);
@@ -63,15 +69,42 @@
             this.panel1.Size = new System.Drawing.Size(284, 611);
             this.panel1.TabIndex = 0;
             // 
-            // checkBox1
+            // textBox5
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(14, 214);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(210, 20);
-            this.checkBox1.TabIndex = 28;
-            this.checkBox1.Text = "Convert to Time-Displacement";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.textBox5.Location = new System.Drawing.Point(102, 566);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(167, 22);
+            this.textBox5.TabIndex = 32;
+            // 
+            // ExportFSButton
+            // 
+            this.ExportFSButton.Location = new System.Drawing.Point(14, 564);
+            this.ExportFSButton.Name = "ExportFSButton";
+            this.ExportFSButton.Size = new System.Drawing.Size(75, 30);
+            this.ExportFSButton.TabIndex = 31;
+            this.ExportFSButton.Text = "Export";
+            this.ExportFSButton.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersVisible = false;
+            this.dataGridView1.Location = new System.Drawing.Point(14, 364);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 20;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(255, 181);
+            this.dataGridView1.TabIndex = 30;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(14, 254);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(255, 35);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Convert to Time-Displacement";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // ImportDG
             // 
@@ -82,7 +115,7 @@
             this.ImportDG.Name = "ImportDG";
             this.ImportDG.RowHeadersWidth = 20;
             this.ImportDG.RowTemplate.Height = 24;
-            this.ImportDG.Size = new System.Drawing.Size(255, 145);
+            this.ImportDG.Size = new System.Drawing.Size(255, 171);
             this.ImportDG.TabIndex = 0;
             this.ImportDG.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ImportDG_CellContentClick);
             // 
@@ -158,11 +191,6 @@
             title2.Name = "Title1";
             title2.Text = "Time-Acceleration";
             this.ta_chart.Titles.Add(title2);
-            this.ta_chart.Click += new System.EventHandler(this.chart1_Click);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Preprocessing
             // 
@@ -174,6 +202,7 @@
             this.Size = new System.Drawing.Size(1167, 611);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImportDG)).EndInit();
             this.preprocessingPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Time_Disp_chart)).EndInit();
@@ -189,9 +218,11 @@
         private System.Windows.Forms.TextBox ImportFile;
         private System.Windows.Forms.Button ImportButton;
         private System.Windows.Forms.DataGridView ImportDG;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.DataVisualization.Charting.Chart ta_chart;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.DataVisualization.Charting.Chart Time_Disp_chart;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button ExportFSButton;
     }
 }

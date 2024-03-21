@@ -52,5 +52,9 @@ namespace ShakeTableGUI
             addUserControl(post);
         }
 
+        private void ShakeTable_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

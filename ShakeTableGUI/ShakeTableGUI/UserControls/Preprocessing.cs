@@ -11,6 +11,11 @@ using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
+// Used for FFT
+using MathNet.Numerics.IntegralTransforms;
+// Used for Complex Numbers
+using System.Numerics;
+
 namespace ShakeTableGUI.UserControls
 {
     public partial class Preprocessing : UserControl
@@ -18,6 +23,13 @@ namespace ShakeTableGUI.UserControls
         public Preprocessing()
         {
             InitializeComponent();
+
+            // Initialize the chart
+            ta_chart.Series.Clear();
+
+            // Set gridlines to be visible
+            ta_chart.ChartAreas[0].AxisX.MajorGrid.Enabled = true;
+            ta_chart.ChartAreas[0].AxisY.MajorGrid.Enabled = true;
         }
 
         private void ImportButton_Click(object sender, EventArgs e)
@@ -25,12 +37,12 @@ namespace ShakeTableGUI.UserControls
             // Open the File Dialog to read in a file
             OpenFileDialog openFileDialog1 = new OpenFileDialog
             {
-                Title = "Browser Text File",
+                Title = "Browser File",
                 CheckFileExists = true,
                 CheckPathExists = true,
                 DefaultExt = "txt",
-                Filter = "txt files (*.txt)|*.txt",
-                FilterIndex = 2,
+                Filter = "Text files (*.txt)|*.txt|CSV files (*.csv)|*.csv|Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*\"",
+                FilterIndex = 1,
                 RestoreDirectory = true,
                 ReadOnlyChecked = true,
                 ShowReadOnly = true,
@@ -55,11 +67,6 @@ namespace ShakeTableGUI.UserControls
         }
 
         private void ImportDG_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
         {
 
         }
@@ -100,6 +107,7 @@ namespace ShakeTableGUI.UserControls
             // Increase font size of the axis titles
             ta_chart.ChartAreas[0].AxisX.TitleFont = new Font("Microsoft San Serif", 12f);
             ta_chart.ChartAreas[0].AxisY.TitleFont = new Font("Microsoft San Serif", 12f);
+
         }
 
         

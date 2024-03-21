@@ -125,7 +125,6 @@
             // 
             this.Arduino.BaudRate = 500000;
             this.Arduino.PortName = "COM3";
-            this.Arduino.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.Arduino_DataReceived);
             // 
             // ShakeTable
             // 

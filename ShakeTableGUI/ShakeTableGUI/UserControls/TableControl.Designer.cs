@@ -29,30 +29,43 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.comboBox_comPort = new System.Windows.Forms.ComboBox();
             this.COM_PORT = new System.Windows.Forms.Label();
             this.ImportFile = new System.Windows.Forms.TextBox();
             this.ImportButton = new System.Windows.Forms.Button();
-            this.FileProperties = new System.Windows.Forms.RichTextBox();
             this.Stop = new System.Windows.Forms.Button();
             this.Start = new System.Windows.Forms.Button();
             this.Backtoorigin = new System.Windows.Forms.Button();
             this.Calibration = new System.Windows.Forms.Button();
             this.ControlPanel = new System.Windows.Forms.Panel();
-            this.richTextBox_textReceiver = new System.Windows.Forms.RichTextBox();
+            this.Time_Disp_Monitor = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.Time_Accel_Monitor = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Arduino_Table_Control = new System.IO.Ports.SerialPort(this.components);
+            this.Past_GMs = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.ControlPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Time_Disp_Monitor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Time_Accel_Monitor)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.Past_GMs);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.comboBox_comPort);
             this.panel1.Controls.Add(this.COM_PORT);
             this.panel1.Controls.Add(this.ImportFile);
             this.panel1.Controls.Add(this.ImportButton);
-            this.panel1.Controls.Add(this.FileProperties);
             this.panel1.Controls.Add(this.Stop);
             this.panel1.Controls.Add(this.Start);
             this.panel1.Controls.Add(this.Backtoorigin);
@@ -62,6 +75,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 611);
             this.panel1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 295);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 16);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Past GMs:";
             // 
             // comboBox_comPort
             // 
@@ -82,28 +104,20 @@
             // 
             // ImportFile
             // 
-            this.ImportFile.Location = new System.Drawing.Point(102, 308);
+            this.ImportFile.Location = new System.Drawing.Point(102, 337);
             this.ImportFile.Name = "ImportFile";
             this.ImportFile.Size = new System.Drawing.Size(167, 22);
             this.ImportFile.TabIndex = 29;
             // 
             // ImportButton
             // 
-            this.ImportButton.Location = new System.Drawing.Point(14, 306);
+            this.ImportButton.Location = new System.Drawing.Point(14, 335);
             this.ImportButton.Name = "ImportButton";
             this.ImportButton.Size = new System.Drawing.Size(75, 30);
             this.ImportButton.TabIndex = 28;
             this.ImportButton.Text = "Import";
             this.ImportButton.UseVisualStyleBackColor = true;
             this.ImportButton.Click += new System.EventHandler(this.ImportButton_Click);
-            // 
-            // FileProperties
-            // 
-            this.FileProperties.Location = new System.Drawing.Point(0, 348);
-            this.FileProperties.Name = "FileProperties";
-            this.FileProperties.Size = new System.Drawing.Size(284, 263);
-            this.FileProperties.TabIndex = 4;
-            this.FileProperties.Text = " File: \n Name: \n Data Type: \n Unit: \n Sacle Factor: \n\n\n";
             // 
             // Stop
             // 
@@ -154,26 +168,90 @@
             // ControlPanel
             // 
             this.ControlPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ControlPanel.Controls.Add(this.richTextBox_textReceiver);
+            this.ControlPanel.Controls.Add(this.Time_Disp_Monitor);
+            this.ControlPanel.Controls.Add(this.Time_Accel_Monitor);
             this.ControlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ControlPanel.Location = new System.Drawing.Point(284, 0);
             this.ControlPanel.Name = "ControlPanel";
             this.ControlPanel.Size = new System.Drawing.Size(883, 611);
             this.ControlPanel.TabIndex = 2;
             // 
-            // richTextBox_textReceiver
+            // Time_Disp_Monitor
             // 
-            this.richTextBox_textReceiver.Location = new System.Drawing.Point(20, 174);
-            this.richTextBox_textReceiver.Name = "richTextBox_textReceiver";
-            this.richTextBox_textReceiver.Size = new System.Drawing.Size(836, 414);
-            this.richTextBox_textReceiver.TabIndex = 0;
-            this.richTextBox_textReceiver.Text = "";
+            chartArea3.Name = "ChartArea1";
+            this.Time_Disp_Monitor.ChartAreas.Add(chartArea3);
+            this.Time_Disp_Monitor.Dock = System.Windows.Forms.DockStyle.Bottom;
+            legend3.DockedToChartArea = "ChartArea1";
+            legend3.Name = "Legend1";
+            this.Time_Disp_Monitor.Legends.Add(legend3);
+            this.Time_Disp_Monitor.Location = new System.Drawing.Point(0, 311);
+            this.Time_Disp_Monitor.Name = "Time_Disp_Monitor";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.IsVisibleInLegend = false;
+            series3.Legend = "Legend1";
+            series3.Name = "Serie 1";
+            series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.Time_Disp_Monitor.Series.Add(series3);
+            this.Time_Disp_Monitor.Size = new System.Drawing.Size(883, 300);
+            this.Time_Disp_Monitor.TabIndex = 2;
+            this.Time_Disp_Monitor.Text = "Time_Disp_Monitor";
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            title3.Name = "Title1";
+            title3.Text = "Time-Displacement";
+            this.Time_Disp_Monitor.Titles.Add(title3);
+            // 
+            // Time_Accel_Monitor
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.Time_Accel_Monitor.ChartAreas.Add(chartArea4);
+            this.Time_Accel_Monitor.Dock = System.Windows.Forms.DockStyle.Top;
+            legend4.DockedToChartArea = "ChartArea1";
+            legend4.Name = "Legend1";
+            this.Time_Accel_Monitor.Legends.Add(legend4);
+            this.Time_Accel_Monitor.Location = new System.Drawing.Point(0, 0);
+            this.Time_Accel_Monitor.Name = "Time_Accel_Monitor";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.IsVisibleInLegend = false;
+            series4.Legend = "Legend1";
+            series4.Name = "Serie 1";
+            series4.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.Time_Accel_Monitor.Series.Add(series4);
+            this.Time_Accel_Monitor.Size = new System.Drawing.Size(883, 300);
+            this.Time_Accel_Monitor.TabIndex = 1;
+            this.Time_Accel_Monitor.Text = "Time_Accel_Monitor";
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            title4.Name = "Title1";
+            title4.Text = "Time-Acceleration";
+            this.Time_Accel_Monitor.Titles.Add(title4);
             // 
             // Arduino_Table_Control
             // 
             this.Arduino_Table_Control.BaudRate = 500000;
             this.Arduino_Table_Control.PortName = "COM3";
             this.Arduino_Table_Control.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.Arduino_Table_Control_DataReceived);
+            // 
+            // Past_GMs
+            // 
+            this.Past_GMs.FormattingEnabled = true;
+            this.Past_GMs.Items.AddRange(new object[] {
+            "Sine Sweep Test",
+            "White Noise Test",
+            "Pink Noise Test",
+            "2020 GM1",
+            "2020 GM2",
+            "2022 GM1",
+            "2022 GM2",
+            "2023 GM1",
+            "2023 GM2",
+            "2024 GM1",
+            "1940 El-Centro Earthquake",
+            "1995 Kobe Earthquake"});
+            this.Past_GMs.Location = new System.Drawing.Point(102, 292);
+            this.Past_GMs.Name = "Past_GMs";
+            this.Past_GMs.Size = new System.Drawing.Size(167, 24);
+            this.Past_GMs.TabIndex = 33;
             // 
             // TableControl
             // 
@@ -186,6 +264,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ControlPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Time_Disp_Monitor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Time_Accel_Monitor)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -198,12 +278,14 @@
         private System.Windows.Forms.Button Start;
         private System.Windows.Forms.Button Backtoorigin;
         private System.Windows.Forms.Button Calibration;
-        private System.Windows.Forms.RichTextBox FileProperties;
         private System.Windows.Forms.TextBox ImportFile;
-        private System.Windows.Forms.Button ImportButton;
         private System.Windows.Forms.ComboBox comboBox_comPort;
         private System.Windows.Forms.Label COM_PORT;
-        private System.Windows.Forms.RichTextBox richTextBox_textReceiver;
         private System.IO.Ports.SerialPort Arduino_Table_Control;
+        private System.Windows.Forms.Button ImportButton;
+        private System.Windows.Forms.DataVisualization.Charting.Chart Time_Disp_Monitor;
+        private System.Windows.Forms.DataVisualization.Charting.Chart Time_Accel_Monitor;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox Past_GMs;
     }
 }
