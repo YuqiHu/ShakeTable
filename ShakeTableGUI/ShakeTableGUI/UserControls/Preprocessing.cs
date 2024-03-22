@@ -15,6 +15,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using MathNet.Numerics.IntegralTransforms;
 // Used for Complex Numbers
 using System.Numerics;
+using MathNet.Numerics;
 
 namespace ShakeTableGUI.UserControls
 {
@@ -82,7 +83,7 @@ namespace ShakeTableGUI.UserControls
                 // Extract X and Y values from DataGridView and plot into Line Chart
                 ta_chart.Series.Clear();
 
-                Series series = new Series();
+                System.Windows.Forms.DataVisualization.Charting.Series series = new System.Windows.Forms.DataVisualization.Charting.Series();
                 series.ChartType = SeriesChartType.Line;
                 series.BorderWidth = 2;
 
@@ -118,16 +119,16 @@ namespace ShakeTableGUI.UserControls
 
 
             // Extract data from DataGridView and plot into Line Chart
-            foreach (DataGridViewColumn column in ImportDG.Columns)
+            foreach (DataGridViewColumn column in td_DG.Columns)
             {
                 // Extract X and Y values from DataGridView and plot into Line Chart
-                ta_chart.Series.Clear();
+                Time_Disp_chart.Series.Clear();
 
-                Series series = new Series();
+                System.Windows.Forms.DataVisualization.Charting.Series series = new System.Windows.Forms.DataVisualization.Charting.Series();
                 series.ChartType = SeriesChartType.Line;
                 series.BorderWidth = 2;
 
-                foreach (DataGridViewRow row in ImportDG.Rows)
+                foreach (DataGridViewRow row in td_DG.Rows)
                 {
                     if (!row.IsNewRow)
                     {
@@ -139,19 +140,81 @@ namespace ShakeTableGUI.UserControls
                     }
                 }
 
-                ta_chart.Series.Add(series);
+                Time_Disp_chart.Series.Add(series);
 
                 // X and Y axies title
-                ta_chart.ChartAreas[0].AxisX.Title = "Time (s)";
-                ta_chart.ChartAreas[0].AxisY.Title = "Acceleration (g)";
+                Time_Disp_chart.ChartAreas[0].AxisX.Title = "Time (s)";
+                Time_Disp_chart.ChartAreas[0].AxisY.Title = "Displacement (mm)";
 
                 // Increase font size of the axis titles
-                ta_chart.ChartAreas[0].AxisX.TitleFont = new Font("Microsoft San Serif", 12f);
-                ta_chart.ChartAreas[0].AxisY.TitleFont = new Font("Microsoft San Serif", 12f);
+                Time_Disp_chart.ChartAreas[0].AxisX.TitleFont = new Font("Microsoft San Serif", 12f);
+                Time_Disp_chart.ChartAreas[0].AxisY.TitleFont = new Font("Microsoft San Serif", 12f);
             }
 
         }
 
+        private void Convert_ta_ts_Click(object sender, EventArgs e)
+        {
+            double timeStep = 0.001;
+            double[] acclData = ImportDG.Rows
+                                    .OfType<DataGridViewRow>()
+                                    .Where(row => !row.IsNewRow)
+                                    .Select(row => Convert.ToDouble(row.Cells[1].Value))
+                                    .ToArray();
+            Complex32[] dispData = Acc2Disp(acclData, timeStep);
+
+
+            td_DG.Columns.Add("Time", "Time");
+            td_DG.Columns.Add("Real", "Real Part");
+            // Populate the datagrid
+            for (int i = 0; i < dispData.Length; i++)
+            {
+                double time = i * timeStep;
+                td_DG.Rows.Add(time, dispData[i].Real);
+            }
+            plot_time_disp();
+        }
+
+        static Complex32[] Acc2Disp(double[] accTimeData, double dt)
+        {
+            int N1 = accTimeData.Length;
+            int N = (int)Math.Pow(2, Math.Ceiling(Math.Log(N1) / Math.Log(2))); // Next power of 2
+            if (N > N1)
+            {
+                Array.Resize(ref accTimeData, N); // Pad array with 0's
+            }
+
+            double df = 1 / (N * dt); // Frequency increment
+            double Nyq = 1 / (2 * dt); // Nyquist frequency
+
+            Complex32[] accFreqData = new Complex32[N];
+            for (int i = 0; i < N; i++)
+            {
+                accFreqData[i] = new Complex32((float)accTimeData[i], 0);
+            }
+
+            Fourier.Forward(accFreqData);
+
+            for (int i = 0; i < N; i++)
+            {
+                double f = -Nyq + i * df; // Organize frequency vector
+                if (f != 0)
+                {
+                    accFreqData[i] /= new Complex32((float)(2 * Math.PI * f), 0).Power(2);
+                }
+                else
+                {
+                    accFreqData[i] = Complex32.Zero;
+                }
+            }
+
+            Fourier.Inverse(accFreqData);
+
+            Complex32[] dispTimeData = new Complex32[N1];
+            Array.Copy(accFreqData, dispTimeData, N1);
+
+            return dispTimeData;
+        }
 
     }
 }

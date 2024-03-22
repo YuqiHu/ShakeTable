@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title11 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title12 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.ExportFSButton = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.td_DG = new System.Windows.Forms.DataGridView();
+            this.Convert_ta_ts = new System.Windows.Forms.Button();
             this.ImportDG = new System.Windows.Forms.DataGridView();
             this.ImportFile = new System.Windows.Forms.TextBox();
             this.ImportButton = new System.Windows.Forms.Button();
@@ -47,7 +47,7 @@
             this.Time_Disp_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ta_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.td_DG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImportDG)).BeginInit();
             this.preprocessingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Time_Disp_chart)).BeginInit();
@@ -58,8 +58,8 @@
             // 
             this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.ExportFSButton);
-            this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.td_DG);
+            this.panel1.Controls.Add(this.Convert_ta_ts);
             this.panel1.Controls.Add(this.ImportDG);
             this.panel1.Controls.Add(this.ImportFile);
             this.panel1.Controls.Add(this.ImportButton);
@@ -85,35 +85,38 @@
             this.ExportFSButton.Text = "Export";
             this.ExportFSButton.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // td_DG
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ColumnHeadersVisible = false;
-            this.dataGridView1.Location = new System.Drawing.Point(14, 364);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 20;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(255, 181);
-            this.dataGridView1.TabIndex = 30;
+            this.td_DG.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.td_DG.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.td_DG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.td_DG.ColumnHeadersVisible = false;
+            this.td_DG.Location = new System.Drawing.Point(14, 364);
+            this.td_DG.Name = "td_DG";
+            this.td_DG.RowHeadersWidth = 10;
+            this.td_DG.RowTemplate.Height = 24;
+            this.td_DG.Size = new System.Drawing.Size(255, 181);
+            this.td_DG.TabIndex = 30;
             // 
-            // button1
+            // Convert_ta_ts
             // 
-            this.button1.Location = new System.Drawing.Point(14, 254);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(255, 35);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "Convert to Time-Displacement";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Convert_ta_ts.Location = new System.Drawing.Point(14, 254);
+            this.Convert_ta_ts.Name = "Convert_ta_ts";
+            this.Convert_ta_ts.Size = new System.Drawing.Size(255, 35);
+            this.Convert_ta_ts.TabIndex = 29;
+            this.Convert_ta_ts.Text = "Convert to Time-Displacement";
+            this.Convert_ta_ts.UseVisualStyleBackColor = true;
+            this.Convert_ta_ts.Click += new System.EventHandler(this.Convert_ta_ts_Click);
             // 
             // ImportDG
             // 
+            this.ImportDG.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ImportDG.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.ImportDG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ImportDG.ColumnHeadersVisible = false;
             this.ImportDG.Location = new System.Drawing.Point(14, 62);
             this.ImportDG.Name = "ImportDG";
-            this.ImportDG.RowHeadersWidth = 20;
+            this.ImportDG.RowHeadersWidth = 10;
             this.ImportDG.RowTemplate.Height = 24;
             this.ImportDG.Size = new System.Drawing.Size(255, 171);
             this.ImportDG.TabIndex = 0;
@@ -150,47 +153,47 @@
             // 
             // Time_Disp_chart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.Time_Disp_chart.ChartAreas.Add(chartArea1);
+            chartArea11.Name = "ChartArea1";
+            this.Time_Disp_chart.ChartAreas.Add(chartArea11);
             this.Time_Disp_chart.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Time_Disp_chart.Location = new System.Drawing.Point(0, 311);
             this.Time_Disp_chart.Name = "Time_Disp_chart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Name = "Series1";
-            this.Time_Disp_chart.Series.Add(series1);
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series11.Name = "Series1";
+            this.Time_Disp_chart.Series.Add(series11);
             this.Time_Disp_chart.Size = new System.Drawing.Size(883, 300);
             this.Time_Disp_chart.TabIndex = 3;
             this.Time_Disp_chart.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            title1.Name = "Title1";
-            title1.Text = "Time-Displacement";
-            this.Time_Disp_chart.Titles.Add(title1);
+            title11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            title11.Name = "Title1";
+            title11.Text = "Time-Displacement";
+            this.Time_Disp_chart.Titles.Add(title11);
             // 
             // ta_chart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.ta_chart.ChartAreas.Add(chartArea2);
+            chartArea12.Name = "ChartArea1";
+            this.ta_chart.ChartAreas.Add(chartArea12);
             this.ta_chart.Dock = System.Windows.Forms.DockStyle.Top;
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.ta_chart.Legends.Add(legend1);
+            legend6.Enabled = false;
+            legend6.Name = "Legend1";
+            this.ta_chart.Legends.Add(legend6);
             this.ta_chart.Location = new System.Drawing.Point(0, 0);
             this.ta_chart.Name = "ta_chart";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "Serie 1";
-            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.ta_chart.Series.Add(series2);
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series12.IsVisibleInLegend = false;
+            series12.Legend = "Legend1";
+            series12.Name = "Serie 1";
+            series12.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.ta_chart.Series.Add(series12);
             this.ta_chart.Size = new System.Drawing.Size(883, 300);
             this.ta_chart.TabIndex = 0;
             this.ta_chart.Text = "Time_Acceleration";
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            title2.Name = "Title1";
-            title2.Text = "Time-Acceleration";
-            this.ta_chart.Titles.Add(title2);
+            title12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            title12.Name = "Title1";
+            title12.Text = "Time-Acceleration";
+            this.ta_chart.Titles.Add(title12);
             // 
             // Preprocessing
             // 
@@ -202,7 +205,7 @@
             this.Size = new System.Drawing.Size(1167, 611);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.td_DG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImportDG)).EndInit();
             this.preprocessingPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Time_Disp_chart)).EndInit();
@@ -220,8 +223,8 @@
         private System.Windows.Forms.DataGridView ImportDG;
         private System.Windows.Forms.DataVisualization.Charting.Chart ta_chart;
         private System.Windows.Forms.DataVisualization.Charting.Chart Time_Disp_chart;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button Convert_ta_ts;
+        private System.Windows.Forms.DataGridView td_DG;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button ExportFSButton;
     }

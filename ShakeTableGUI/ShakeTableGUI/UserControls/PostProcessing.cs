@@ -1,13 +1,23 @@
-﻿using System;
+﻿using MathNet.Numerics;
+using MathNet.Numerics.IntegralTransforms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using MathNet.Numerics;
+using MathNet.Numerics.IntegralTransforms;
+using MathNet.Numerics.LinearAlgebra.Complex32;
+using MathNet.Numerics.Interpolation;
+using System.Windows.Forms.DataVisualization.Charting;
+using MathNet.Numerics.LinearAlgebra.Factorization;
 
 namespace ShakeTableGUI.UserControls
 {
@@ -30,7 +40,7 @@ namespace ShakeTableGUI.UserControls
             int start = 0;
             int end = (int)Math.Round(m / Math.Pow(max_period / (2.0 * Math.PI), 2));
 
-            // Create a mass array to vary the time steps
+            // Create a stiffness array to vary the time steps
             double[] k = Enumerable.Range(start, end - start + 1).Select(x => 0.01).ToArray();
 
             // Get gamma and beta value for Newmarks Method (Average or Linear)
@@ -149,16 +159,288 @@ namespace ShakeTableGUI.UserControls
                 MessageBox.Show("Data exported successfully!", "Export Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        private void plotRS()
-        {
-            // Initialize the chart
 
+
+
+        private void Import_RS_but_Click(object sender, EventArgs e)
+        {
+            // Open the File Dialog to read in a file
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                Title = "Browser File",
+                CheckFileExists = true,
+                CheckPathExists = true,
+                DefaultExt = "txt",
+                Filter = "Text files (*.txt)|*.txt|CSV files (*.csv)|*.csv|Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*\"",
+                FilterIndex = 1,
+                RestoreDirectory = true,
+                ReadOnlyChecked = true,
+                ShowReadOnly = true,
+            };
+
+            // Show text from the file in the DataGrid
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                RS_TB.Text = openFileDialog1.FileName;
+                ImportHelper.file = RS_TB.Text;
+            }
+
+            List<double> RS_accelData = new List<double>();
+
+            // Read the file line by line
+            using (StreamReader reader = new StreamReader(RS_TB.Text))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    // Split the line into columns
+                    string[] columns = line.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    // Check if there are at least two columns and if the second column is a valid double
+                    if (columns.Length >= 2 && double.TryParse(columns[1], out double value))
+                    {
+                        RS_accelData.Add(value); // Add the second column value to the list
+                    }
+                    else
+                    {
+                        // Handle invalid data or empty lines
+                        Console.WriteLine("Invalid data or empty line: " + line);
+                    }
+                }
+            }
+
+            // Convert the list to an array if necessary
+            double[] RS_accelArray = RS_accelData.ToArray();
+
+            (double[] u_max, double[] uv_max, double[] ua_max) = NewmarksAcceleration(RS_accelArray);
+            string type_label = RS_type_box.Text;
+
+            if (type_label == "Acceleration Response Spectrum")
+            {
+                plotRS(ua_max, type_label);
+            }
+            if (type_label == "Velocity Response Spectrum")
+            {
+                plotRS(uv_max, type_label);
+            }
+            if (type_label == "Displacement Response Spectrum")
+            {
+                plotRS(u_max, type_label);
+            }
+
+        }
+
+        private void Import_FFT_but_Click(object sender, EventArgs e)
+        {
+            // Open the File Dialog to read in a file
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                Title = "Browser File",
+                CheckFileExists = true,
+                CheckPathExists = true,
+                DefaultExt = "txt",
+                Filter = "Text files (*.txt)|*.txt|CSV files (*.csv)|*.csv|Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*\"",
+                FilterIndex = 1,
+                RestoreDirectory = true,
+                ReadOnlyChecked = true,
+                ShowReadOnly = true,
+            };
+
+            // Show path of file path
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                FFT_TB.Text = openFileDialog1.FileName;
+                ImportHelper.file = FFT_TB.Text;
+            }
+
+            (double[] timeData, double[] accelerationData) = read_time_accl(FFT_TB.Text);
+            double dt = 0.001;
+            Complex[] fftResult = FFT_Result(timeData, accelerationData, dt);
+
+            // Add columns to the DataGridView
+            FFT_result_DG.Columns.Add("Frequency", "Frequency (Hz)");
+            FFT_result_DG.Columns.Add("Magnitude", "Magnitude");
+
+            // Populate the DataGridView with frequency and magnitude data
+            for (int i = 0; i < fftResult.Length; i++)
+            {
+                // Calculate frequency corresponding to the FFT bin
+                double frequency = Math.Round(i / (double)fftResult.Length, 4);
+
+                // Add a new row with frequency and magnitude data
+                FFT_result_DG.Rows.Add(frequency, fftResult[i].Magnitude);
+            }
+
+            plot_FFT();
 
 
         }
 
-        private void RS_type_box_SelectedIndexChanged(object sender, EventArgs e)
+        private Complex[] FFT_Result(double[] timeData, double[] accelerationData, double dt)
         {
+            // Resample data onto a uniform grid
+            double[] uniformTimeGrid = GenerateUniformTimeGrid(timeData, dt);
+            double[] uniformAccelerationData = ResampleData(timeData, accelerationData, uniformTimeGrid);
+
+            // Convert resampled acceleration data to Complex32[] array
+            Complex32[] complexAccelerationData = new Complex32[uniformAccelerationData.Length];
+            for (int i = 0; i < uniformAccelerationData.Length; i++)
+            {
+                complexAccelerationData[i] = new Complex32((float)uniformAccelerationData[i], 0);
+            }
+
+            // Perform FFT on resampled data
+            Fourier.Forward(complexAccelerationData);
+
+            // Convert Complex32[] to Complex[]
+            Complex[] fftResult = new Complex[complexAccelerationData.Length];
+            for (int i = 0; i < complexAccelerationData.Length; i++)
+            {
+                fftResult[i] = new Complex(complexAccelerationData[i].Real, complexAccelerationData[i].Imaginary);
+            }
+
+            return fftResult;
+        }
+
+        // Generate a uniform time grid based on the time step (dt)
+        private double[] GenerateUniformTimeGrid(double[] timeData, double dt)
+        {
+            List<double> uniformTimeGrid = new List<double>();
+            double startTime = timeData[0];
+            double endTime = timeData[timeData.Length - 1];
+
+            for (double t = startTime; t <= endTime; t += dt)
+            {
+                uniformTimeGrid.Add(t);
+            }
+
+            return uniformTimeGrid.ToArray();
+        }
+
+        // Resample data onto a uniform grid using linear interpolation
+        private double[] ResampleData(double[] timeData, double[] originalData, double[] uniformTimeGrid)
+        {
+            // Use linear interpolation to resample data onto uniform grid
+            IInterpolation interpolation = Interpolate.Linear(timeData, originalData);
+            double[] resampledData = new double[uniformTimeGrid.Length];
+            for (int i = 0; i < uniformTimeGrid.Length; i++)
+            {
+                resampledData[i] = interpolation.Interpolate(uniformTimeGrid[i]);
+            }
+            return resampledData;
+        }
+
+        private (double[], double[]) read_time_accl(string filePath)
+        {
+            // Read data from file
+            List<double> timeData = new List<double>();
+            List<double> accelerationData = new List<double>();
+
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] parts = line.Split('\t'); // Assuming tab-separated data, adjust if necessary
+
+                    if (parts.Length >= 2 && double.TryParse(parts[0], out double time) && double.TryParse(parts[1], out double acceleration))
+                    {
+                        timeData.Add(time);
+                        accelerationData.Add(acceleration);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid data format in line: " + line);
+                    }
+                }
+            }
+
+            // Convert lists to arrays
+            double[] timeArray = timeData.ToArray();
+            double[] accelerationArray = accelerationData.ToArray();
+
+
+            return (timeArray, accelerationArray);
+        }
+
+        private void plot_FFT()
+        {
+            // Initialize the chart
+            FFT_chart.Series.Clear();
+
+
+            // Extract data from DataGridView and plot into Line Chart
+            foreach (DataGridViewColumn column in FFT_result_DG.Columns)
+            {
+                // Extract X and Y values from DataGridView and plot into Line Chart
+                FFT_chart.Series.Clear();
+
+                System.Windows.Forms.DataVisualization.Charting.Series series = new System.Windows.Forms.DataVisualization.Charting.Series();
+                series.ChartType = SeriesChartType.Line;
+                series.BorderWidth = 2;
+
+                foreach (DataGridViewRow row in FFT_result_DG.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        double xValue, yValue;
+                        if (double.TryParse(row.Cells[0].Value.ToString(), out xValue) && double.TryParse(row.Cells[1].Value.ToString(), out yValue))
+                        {
+                            series.Points.AddXY(xValue, yValue);
+                        }
+                    }
+                }
+
+                FFT_chart.Series.Add(series);
+
+                // X and Y axies title
+                FFT_chart.ChartAreas[0].AxisX.Title = "Frequency (Hz)";
+                FFT_chart.ChartAreas[0].AxisY.Title = "Magnitude";
+
+                // Increase font size of the axis titles
+                FFT_chart.ChartAreas[0].AxisX.TitleFont = new Font("Microsoft San Serif", 12f);
+                FFT_chart.ChartAreas[0].AxisY.TitleFont = new Font("Microsoft San Serif", 12f);
+            }
+
+
+        }
+
+        private void plotRS(double[] yValues, string label)
+        {
+            // Initialize the chart
+            RS_chart.Series.Clear();
+
+            System.Windows.Forms.DataVisualization.Charting.Series series = new System.Windows.Forms.DataVisualization.Charting.Series();
+            series.ChartType = SeriesChartType.Line;
+            series.BorderWidth = 2;
+
+            // Add data to the series
+            for (int i = 0; i < yValues.Length; i++)
+            {
+                series.Points.AddXY(i * 0.01, yValues[i]); // Assuming a timestep of 0.01
+            }
+
+            RS_chart.Series.Add(series);
+
+            // X and Y axies title
+            RS_chart.ChartAreas[0].AxisX.Title = "Period (s)";
+            if(label == "Acceleration Response Spectrum")
+            {
+                RS_chart.ChartAreas[0].AxisY.Title = "Acceleration (g)";
+            }
+            else if (label == "Velocity Response Spectrum")
+            {
+                RS_chart.ChartAreas[0].AxisY.Title = "Velocity (mm/s)";
+            }
+            else if (label == "Displacement Response Spectrum")
+            {
+                RS_chart.ChartAreas[0].AxisY.Title = "Displacement (mm)";
+            }
+
+
+            // Increase font size of the axis titles
+            RS_chart.ChartAreas[0].AxisX.TitleFont = new Font("Microsoft San Serif", 12f);
+            RS_chart.ChartAreas[0].AxisY.TitleFont = new Font("Microsoft San Serif", 12f);
 
         }
     }
