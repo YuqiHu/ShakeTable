@@ -16,21 +16,19 @@ using MathNet.Numerics.IntegralTransforms;
 // Used for Complex Numbers
 using System.Numerics;
 using MathNet.Numerics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace ShakeTableGUI.UserControls
 {
     public partial class Preprocessing : UserControl
     {
+        public double[] time;
+        public double[] acceleration;
+        public double[] displacement;
+
         public Preprocessing()
         {
             InitializeComponent();
-
-            // Initialize the chart
-            ta_chart.Series.Clear();
-
-            // Set gridlines to be visible
-            ta_chart.ChartAreas[0].AxisX.MajorGrid.Enabled = true;
-            ta_chart.ChartAreas[0].AxisY.MajorGrid.Enabled = true;
         }
 
         private void ImportButton_Click(object sender, EventArgs e)
@@ -52,42 +50,51 @@ namespace ShakeTableGUI.UserControls
             // Show text from the file in the DataGrid
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                ImportFile.Text = openFileDialog1.FileName;
-                ImportHelper.file = ImportFile.Text;
+                importFileTextBox.Text = openFileDialog1.FileName;
+                ImportHelper.file = importFileTextBox.Text;
 
-                ImportDG.DataSource = ImportHelper.DataTableFromTextFile(ImportFile.Text);
+                // Read and validate input fields
+                if (string.IsNullOrWhiteSpace(unitOfAcceleration.Text)||
+                    string.IsNullOrWhiteSpace(skipHeaderLinesText.Text))
+                {
+                    MessageBox.Show("Please choose the unit of acceleration.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!int.TryParse(skipHeaderLines.Text, out int skip_header_lines))
+                {
+                    MessageBox.Show("Invalid input. Please specify the number of header lines to skip.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Read the file data
+                (time, acceleration) = DataProcessor.ReadTimeAccelerationData(importFileTextBox.Text, unitOfAcceleration.Text, skip_header_lines);
+
+                timeAccelerationDataGrid.DataSource = ImportHelper.DataTableFromTextFile(importFileTextBox.Text, unitOfAcceleration.Text, delimiterOptions.SelectedIndex, skip_header_lines);
+
+                PlotTimeAccelerationData();
             }
-
-            PlotTimeAccelerationData();
-
         }
 
-        private void ImportFile_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ImportDG_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void PlotTimeAccelerationData()
         {
             // Initialize the chart
-            ta_chart.Series.Clear();
+            timeAccelerationChart.Series.Clear();
+            timeAccelerationChart.ChartAreas["ChartArea1"].AxisX.Minimum = 0;
+            timeAccelerationChart.ChartAreas["ChartArea1"].AxisX.Interval = 5.00;
 
             // Extract data from DataGridView and plot into Line Chart
-            foreach (DataGridViewColumn column in ImportDG.Columns)
+            foreach (DataGridViewColumn column in timeAccelerationDataGrid.Columns)
             {
                 // Extract X and Y values from DataGridView and plot into Line Chart
-                ta_chart.Series.Clear();
+                timeAccelerationChart.Series.Clear();
 
                 System.Windows.Forms.DataVisualization.Charting.Series series = new System.Windows.Forms.DataVisualization.Charting.Series();
                 series.ChartType = SeriesChartType.Line;
                 series.BorderWidth = 2;
 
-                foreach (DataGridViewRow row in ImportDG.Rows)
+                foreach (DataGridViewRow row in timeAccelerationDataGrid.Rows)
                 {
                     if (!row.IsNewRow)
                     {
@@ -99,122 +106,129 @@ namespace ShakeTableGUI.UserControls
                     }
                 }
 
-                ta_chart.Series.Add(series);
+                timeAccelerationChart.Series.Add(series);
             }
             // X and Y axies title
-            ta_chart.ChartAreas[0].AxisX.Title = "Time (s)";
-            ta_chart.ChartAreas[0].AxisY.Title = "Acceleration (g)";
+            timeAccelerationChart.ChartAreas[0].AxisX.Title = "Time (s)";
+            timeAccelerationChart.ChartAreas[0].AxisY.Title = "Acceleration (g)";
 
             // Increase font size of the axis titles
-            ta_chart.ChartAreas[0].AxisX.TitleFont = new Font("Microsoft San Serif", 12f);
-            ta_chart.ChartAreas[0].AxisY.TitleFont = new Font("Microsoft San Serif", 12f);
-
-        }
-
-        
-        private void plot_time_disp()
-        {
-            // Initialize the chart
-            Time_Disp_chart.Series.Clear();
-
-
-            // Extract data from DataGridView and plot into Line Chart
-            foreach (DataGridViewColumn column in td_DG.Columns)
-            {
-                // Extract X and Y values from DataGridView and plot into Line Chart
-                Time_Disp_chart.Series.Clear();
-
-                System.Windows.Forms.DataVisualization.Charting.Series series = new System.Windows.Forms.DataVisualization.Charting.Series();
-                series.ChartType = SeriesChartType.Line;
-                series.BorderWidth = 2;
-
-                foreach (DataGridViewRow row in td_DG.Rows)
-                {
-                    if (!row.IsNewRow)
-                    {
-                        double xValue, yValue;
-                        if (double.TryParse(row.Cells[0].Value.ToString(), out xValue) && double.TryParse(row.Cells[1].Value.ToString(), out yValue))
-                        {
-                            series.Points.AddXY(xValue, yValue);
-                        }
-                    }
-                }
-
-                Time_Disp_chart.Series.Add(series);
-
-                // X and Y axies title
-                Time_Disp_chart.ChartAreas[0].AxisX.Title = "Time (s)";
-                Time_Disp_chart.ChartAreas[0].AxisY.Title = "Displacement (mm)";
-
-                // Increase font size of the axis titles
-                Time_Disp_chart.ChartAreas[0].AxisX.TitleFont = new Font("Microsoft San Serif", 12f);
-                Time_Disp_chart.ChartAreas[0].AxisY.TitleFont = new Font("Microsoft San Serif", 12f);
-            }
-
+            timeAccelerationChart.ChartAreas[0].AxisX.TitleFont = new Font("Microsoft San Serif", 12f);
+            timeAccelerationChart.ChartAreas[0].AxisY.TitleFont = new Font("Microsoft San Serif", 12f);
         }
 
         private void Convert_ta_ts_Click(object sender, EventArgs e)
         {
-            double timeStep = 0.001;
-            double[] acclData = ImportDG.Rows
-                                    .OfType<DataGridViewRow>()
-                                    .Where(row => !row.IsNewRow)
-                                    .Select(row => Convert.ToDouble(row.Cells[1].Value))
-                                    .ToArray();
-            Complex32[] dispData = Acc2Disp(acclData, timeStep);
+            // The maximum displacement of the shake table is 0.06 m per side
+            double displacementLimit = 0.06;
 
+            displacement = TimeDisplacementConverter.ConvertToDisplacement(time, acceleration, displacementLimit);
 
-            td_DG.Columns.Add("Time", "Time");
-            td_DG.Columns.Add("Real", "Real Part");
-            // Populate the datagrid
-            for (int i = 0; i < dispData.Length; i++)
-            {
-                double time = i * timeStep;
-                td_DG.Rows.Add(time, dispData[i].Real);
-            }
-            plot_time_disp();
+            PlotTimeDisplacementData();
+            ShowTimeDisplacementDataOnDataGrid();
         }
 
-        static Complex32[] Acc2Disp(double[] accTimeData, double dt)
+        private void PlotTimeDisplacementData()
         {
-            int N1 = accTimeData.Length;
-            int N = (int)Math.Pow(2, Math.Ceiling(Math.Log(N1) / Math.Log(2))); // Next power of 2
-            if (N > N1)
+            if (time == null || displacement == null || time.Length != displacement.Length)
             {
-                Array.Resize(ref accTimeData, N); // Pad array with 0's
+                throw new ArgumentException("Time and displacement arrays must be non-null and have the same length.");
             }
 
-            double df = 1 / (N * dt); // Frequency increment
-            double Nyq = 1 / (2 * dt); // Nyquist frequency
+            // Initialize the chart
+            timeDisplacementChart.Series.Clear();
+            timeDisplacementChart.ChartAreas["ChartArea1"].AxisX.Minimum = 0;
+            timeDisplacementChart.ChartAreas["ChartArea1"].AxisX.Interval = 5.00;
 
-            Complex32[] accFreqData = new Complex32[N];
-            for (int i = 0; i < N; i++)
+            // Create a new series for the plot
+            var series = new System.Windows.Forms.DataVisualization.Charting.Series
             {
-                accFreqData[i] = new Complex32((float)accTimeData[i], 0);
+                ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line,
+                BorderWidth = 2
+            };
+
+            // Add data points to the series
+            for (int i = 0; i < time.Length; i++)
+            {
+                series.Points.AddXY(time[i], displacement[i]);
             }
 
-            Fourier.Forward(accFreqData);
+            // Add the series to the chart
+            timeDisplacementChart.Series.Add(series);
 
-            for (int i = 0; i < N; i++)
-            {
-                double f = -Nyq + i * df; // Organize frequency vector
-                if (f != 0)
-                {
-                    accFreqData[i] /= new Complex32((float)(2 * Math.PI * f), 0).Power(2);
-                }
-                else
-                {
-                    accFreqData[i] = Complex32.Zero;
-                }
-            }
+            // Configure axis titles and font sizes
+            timeDisplacementChart.ChartAreas["ChartArea1"].AxisX.Title = "Time (s)";
+            timeDisplacementChart.ChartAreas["ChartArea1"].AxisY.Title = "Displacement (m)";
 
-            Fourier.Inverse(accFreqData);
-
-            Complex32[] dispTimeData = new Complex32[N1];
-            Array.Copy(accFreqData, dispTimeData, N1);
-
-            return dispTimeData;
+            // Increase font size of the axis titles
+            timeDisplacementChart.ChartAreas["ChartArea1"].AxisX.TitleFont = new Font("Microsoft Sans Serif", 12f);
+            timeDisplacementChart.ChartAreas["ChartArea1"].AxisY.TitleFont = new Font("Microsoft Sans Serif", 11f);
         }
 
+        private void ShowTimeDisplacementDataOnDataGrid()
+        {
+            if (time == null || displacement == null || time.Length != displacement.Length)
+            {
+                throw new ArgumentException("Time and displacement arrays must be non-null and have the same length.");
+            }
+
+            // Clear existing rows and columns
+            timeDisplacementDataGrid.Columns.Clear();
+            timeDisplacementDataGrid.Rows.Clear();
+
+            // Add columns for Time and Displacement
+            timeDisplacementDataGrid.Columns.Add("Time", "Time (s)");
+            timeDisplacementDataGrid.Columns.Add("Displacement", "Displacement (m)");
+
+            // Use a List to store rows temporarily
+            var rows = new List<object[]>();
+            for (int i = 0; i < time.Length; i++)
+            {
+                rows.Add(new object[] { time[i].ToString("F3"), displacement[i].ToString("F8") });
+            }
+
+            // Add all rows at once
+            foreach (var row in rows)
+            {
+                timeDisplacementDataGrid.Rows.Add(row);
+            }
+
+            timeDisplacementDataGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
+            timeDisplacementDataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            timeDisplacementDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        }
+
+
+        private void ExportFSButton_Click(object sender, EventArgs e)
+        {
+            // Create save file dialog
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text files (*.txt)|*.txt|CSV Files (*.csv)|*.csv";
+            saveFileDialog.Title = "Export Data";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Get the selected file name
+                string fileName = saveFileDialog.FileName;
+
+                // Write data to the file
+                using (StreamWriter sw = new StreamWriter(fileName))
+                {
+                    // Write column headers
+                    sw.WriteLine("Time(s)\tDisplacement(m)");
+
+                    if (time.Length != displacement.Length)
+                        throw new Exception("Time data series and displacement data series have different length.");
+
+                    // Write data rows
+                    for (int i = 0; i < time.Length; i++)
+                    {
+                        sw.WriteLine($"{time[i]}\t{displacement[i]}");
+                    }
+                }
+
+                MessageBox.Show("Data exported successfully!", "Export Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

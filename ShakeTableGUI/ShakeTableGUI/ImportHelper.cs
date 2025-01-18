@@ -13,13 +13,41 @@ namespace ShakeTableGUI
     {
         public static string file;
 
-        public static DataTable DataTableFromTextFile(string location, char delimiter = '\t')
+        public static DataTable DataTableFromTextFile(string location, string unit, int delimiterIndex = 0, int skipLines = 0)
         {
-            DataTable result;
-            location = file;
+            // Read all lines from the file
+            string[] allLines = File.ReadAllLines(location);
 
-            string[] LineArray = File.ReadAllLines(location);
-            result = FromDataTable(LineArray, delimiter);
+            // Ensure we skip only if there are enough lines
+            if (skipLines >= allLines.Length)
+            {
+                throw new ArgumentException("Number of lines to skip exceeds the total number of lines in the file.");
+            }
+
+            // Skip the specified number of lines
+            string[] LineArray = allLines.Skip(skipLines).ToArray();
+
+            char delimiter = '\t'; // Default value
+            switch (delimiterIndex)
+            {
+                case 0:
+                    delimiter = '\t';
+                    break;
+                case 1:
+                    delimiter = ',';
+                    break;
+                case 2:
+                    delimiter = ';';
+                    break;
+                default:
+                    throw new ArgumentException("Invalid delimiter index.");
+            }
+
+            // Convert the remaining lines to a DataTable
+            DataTable result = FromDataTable(LineArray, delimiter);
+
+            result.Columns[0].ColumnName = "Time(s)";
+            result.Columns[1].ColumnName = $"Acceleration({unit})";
             return result;
         }
 

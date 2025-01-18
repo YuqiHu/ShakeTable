@@ -28,172 +28,238 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title11 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title12 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.ExportFSButton = new System.Windows.Forms.Button();
-            this.td_DG = new System.Windows.Forms.DataGridView();
-            this.Convert_ta_ts = new System.Windows.Forms.Button();
-            this.ImportDG = new System.Windows.Forms.DataGridView();
-            this.ImportFile = new System.Windows.Forms.TextBox();
-            this.ImportButton = new System.Windows.Forms.Button();
+            this.delimiterText = new System.Windows.Forms.Label();
+            this.delimiterOptions = new System.Windows.Forms.ComboBox();
+            this.skipHeaderLinesText = new System.Windows.Forms.Label();
+            this.skipHeaderLines = new System.Windows.Forms.TextBox();
+            this.unitOfAccelerationLabel = new System.Windows.Forms.Label();
+            this.unitOfAcceleration = new System.Windows.Forms.ComboBox();
+            this.exportFileTextBox = new System.Windows.Forms.TextBox();
+            this.exportButton = new System.Windows.Forms.Button();
+            this.timeDisplacementDataGrid = new System.Windows.Forms.DataGridView();
+            this.convertToTimeDisplacementButton = new System.Windows.Forms.Button();
+            this.timeAccelerationDataGrid = new System.Windows.Forms.DataGridView();
+            this.importFileTextBox = new System.Windows.Forms.TextBox();
+            this.importButton = new System.Windows.Forms.Button();
             this.preprocessingPanel = new System.Windows.Forms.Panel();
-            this.Time_Disp_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.ta_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.timeDisplacementChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.timeAccelerationChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.td_DG)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImportDG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeDisplacementDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeAccelerationDataGrid)).BeginInit();
             this.preprocessingPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Time_Disp_chart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ta_chart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeDisplacementChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeAccelerationChart)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox5);
-            this.panel1.Controls.Add(this.ExportFSButton);
-            this.panel1.Controls.Add(this.td_DG);
-            this.panel1.Controls.Add(this.Convert_ta_ts);
-            this.panel1.Controls.Add(this.ImportDG);
-            this.panel1.Controls.Add(this.ImportFile);
-            this.panel1.Controls.Add(this.ImportButton);
+            this.panel1.Controls.Add(this.delimiterText);
+            this.panel1.Controls.Add(this.delimiterOptions);
+            this.panel1.Controls.Add(this.skipHeaderLinesText);
+            this.panel1.Controls.Add(this.skipHeaderLines);
+            this.panel1.Controls.Add(this.unitOfAccelerationLabel);
+            this.panel1.Controls.Add(this.unitOfAcceleration);
+            this.panel1.Controls.Add(this.exportFileTextBox);
+            this.panel1.Controls.Add(this.exportButton);
+            this.panel1.Controls.Add(this.timeDisplacementDataGrid);
+            this.panel1.Controls.Add(this.convertToTimeDisplacementButton);
+            this.panel1.Controls.Add(this.timeAccelerationDataGrid);
+            this.panel1.Controls.Add(this.importFileTextBox);
+            this.panel1.Controls.Add(this.importButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 611);
             this.panel1.TabIndex = 0;
             // 
-            // textBox5
+            // delimiterText
             // 
-            this.textBox5.Location = new System.Drawing.Point(102, 566);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(167, 22);
-            this.textBox5.TabIndex = 32;
+            this.delimiterText.AutoSize = true;
+            this.delimiterText.Location = new System.Drawing.Point(11, 56);
+            this.delimiterText.Name = "delimiterText";
+            this.delimiterText.Size = new System.Drawing.Size(60, 16);
+            this.delimiterText.TabIndex = 64;
+            this.delimiterText.Text = "Delimiter";
             // 
-            // ExportFSButton
+            // delimiterOptions
             // 
-            this.ExportFSButton.Location = new System.Drawing.Point(14, 564);
-            this.ExportFSButton.Name = "ExportFSButton";
-            this.ExportFSButton.Size = new System.Drawing.Size(75, 30);
-            this.ExportFSButton.TabIndex = 31;
-            this.ExportFSButton.Text = "Export";
-            this.ExportFSButton.UseVisualStyleBackColor = true;
+            this.delimiterOptions.FormattingEnabled = true;
+            this.delimiterOptions.Items.AddRange(new object[] {
+            "\\t",
+            ",",
+            ";"});
+            this.delimiterOptions.Location = new System.Drawing.Point(152, 51);
+            this.delimiterOptions.Name = "delimiterOptions";
+            this.delimiterOptions.Size = new System.Drawing.Size(117, 24);
+            this.delimiterOptions.TabIndex = 1;
             // 
-            // td_DG
+            // skipHeaderLinesText
             // 
-            this.td_DG.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.td_DG.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.td_DG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.td_DG.ColumnHeadersVisible = false;
-            this.td_DG.Location = new System.Drawing.Point(14, 364);
-            this.td_DG.Name = "td_DG";
-            this.td_DG.RowHeadersWidth = 10;
-            this.td_DG.RowTemplate.Height = 24;
-            this.td_DG.Size = new System.Drawing.Size(255, 181);
-            this.td_DG.TabIndex = 30;
+            this.skipHeaderLinesText.AutoSize = true;
+            this.skipHeaderLinesText.Location = new System.Drawing.Point(11, 82);
+            this.skipHeaderLinesText.Name = "skipHeaderLinesText";
+            this.skipHeaderLinesText.Size = new System.Drawing.Size(118, 16);
+            this.skipHeaderLinesText.TabIndex = 62;
+            this.skipHeaderLinesText.Text = "Skip Header Lines";
             // 
-            // Convert_ta_ts
+            // skipHeaderLines
             // 
-            this.Convert_ta_ts.Location = new System.Drawing.Point(14, 254);
-            this.Convert_ta_ts.Name = "Convert_ta_ts";
-            this.Convert_ta_ts.Size = new System.Drawing.Size(255, 35);
-            this.Convert_ta_ts.TabIndex = 29;
-            this.Convert_ta_ts.Text = "Convert to Time-Displacement";
-            this.Convert_ta_ts.UseVisualStyleBackColor = true;
-            this.Convert_ta_ts.Click += new System.EventHandler(this.Convert_ta_ts_Click);
+            this.skipHeaderLines.Location = new System.Drawing.Point(152, 80);
+            this.skipHeaderLines.Name = "skipHeaderLines";
+            this.skipHeaderLines.Size = new System.Drawing.Size(117, 22);
+            this.skipHeaderLines.TabIndex = 2;
             // 
-            // ImportDG
+            // unitOfAccelerationLabel
             // 
-            this.ImportDG.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.ImportDG.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ImportDG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ImportDG.ColumnHeadersVisible = false;
-            this.ImportDG.Location = new System.Drawing.Point(14, 62);
-            this.ImportDG.Name = "ImportDG";
-            this.ImportDG.RowHeadersWidth = 10;
-            this.ImportDG.RowTemplate.Height = 24;
-            this.ImportDG.Size = new System.Drawing.Size(255, 171);
-            this.ImportDG.TabIndex = 0;
-            this.ImportDG.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ImportDG_CellContentClick);
+            this.unitOfAccelerationLabel.AutoSize = true;
+            this.unitOfAccelerationLabel.Location = new System.Drawing.Point(11, 27);
+            this.unitOfAccelerationLabel.Name = "unitOfAccelerationLabel";
+            this.unitOfAccelerationLabel.Size = new System.Drawing.Size(122, 16);
+            this.unitOfAccelerationLabel.TabIndex = 60;
+            this.unitOfAccelerationLabel.Text = "Unit of Acceleration";
             // 
-            // ImportFile
+            // unitOfAcceleration
             // 
-            this.ImportFile.Location = new System.Drawing.Point(102, 21);
-            this.ImportFile.Name = "ImportFile";
-            this.ImportFile.Size = new System.Drawing.Size(167, 22);
-            this.ImportFile.TabIndex = 27;
-            this.ImportFile.TextChanged += new System.EventHandler(this.ImportFile_TextChanged);
+            this.unitOfAcceleration.FormattingEnabled = true;
+            this.unitOfAcceleration.Items.AddRange(new object[] {
+            "g",
+            "m/s^2"});
+            this.unitOfAcceleration.Location = new System.Drawing.Point(152, 22);
+            this.unitOfAcceleration.Name = "unitOfAcceleration";
+            this.unitOfAcceleration.Size = new System.Drawing.Size(117, 24);
+            this.unitOfAcceleration.TabIndex = 0;
             // 
-            // ImportButton
+            // exportFileTextBox
             // 
-            this.ImportButton.Location = new System.Drawing.Point(14, 19);
-            this.ImportButton.Name = "ImportButton";
-            this.ImportButton.Size = new System.Drawing.Size(75, 30);
-            this.ImportButton.TabIndex = 22;
-            this.ImportButton.Text = "Import";
-            this.ImportButton.UseVisualStyleBackColor = true;
-            this.ImportButton.Click += new System.EventHandler(this.ImportButton_Click);
+            this.exportFileTextBox.Location = new System.Drawing.Point(102, 566);
+            this.exportFileTextBox.Name = "exportFileTextBox";
+            this.exportFileTextBox.Size = new System.Drawing.Size(167, 22);
+            this.exportFileTextBox.TabIndex = 32;
+            // 
+            // exportButton
+            // 
+            this.exportButton.Location = new System.Drawing.Point(14, 564);
+            this.exportButton.Name = "exportButton";
+            this.exportButton.Size = new System.Drawing.Size(75, 30);
+            this.exportButton.TabIndex = 21;
+            this.exportButton.Text = "Export";
+            this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.ExportFSButton_Click);
+            // 
+            // timeDisplacementDataGrid
+            // 
+            this.timeDisplacementDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.timeDisplacementDataGrid.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.timeDisplacementDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.timeDisplacementDataGrid.Location = new System.Drawing.Point(14, 364);
+            this.timeDisplacementDataGrid.Name = "timeDisplacementDataGrid";
+            this.timeDisplacementDataGrid.RowHeadersWidth = 10;
+            this.timeDisplacementDataGrid.RowTemplate.Height = 24;
+            this.timeDisplacementDataGrid.Size = new System.Drawing.Size(255, 181);
+            this.timeDisplacementDataGrid.TabIndex = 30;
+            // 
+            // convertToTimeDisplacementButton
+            // 
+            this.convertToTimeDisplacementButton.Location = new System.Drawing.Point(14, 311);
+            this.convertToTimeDisplacementButton.Name = "convertToTimeDisplacementButton";
+            this.convertToTimeDisplacementButton.Size = new System.Drawing.Size(255, 35);
+            this.convertToTimeDisplacementButton.TabIndex = 11;
+            this.convertToTimeDisplacementButton.Text = "Convert to Time-Displacement";
+            this.convertToTimeDisplacementButton.UseVisualStyleBackColor = true;
+            this.convertToTimeDisplacementButton.Click += new System.EventHandler(this.Convert_ta_ts_Click);
+            // 
+            // timeAccelerationDataGrid
+            // 
+            this.timeAccelerationDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.timeAccelerationDataGrid.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.timeAccelerationDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.timeAccelerationDataGrid.Location = new System.Drawing.Point(14, 152);
+            this.timeAccelerationDataGrid.Name = "timeAccelerationDataGrid";
+            this.timeAccelerationDataGrid.RowHeadersWidth = 10;
+            this.timeAccelerationDataGrid.RowTemplate.Height = 24;
+            this.timeAccelerationDataGrid.Size = new System.Drawing.Size(255, 138);
+            this.timeAccelerationDataGrid.TabIndex = 0;
+            // 
+            // importFileTextBox
+            // 
+            this.importFileTextBox.Location = new System.Drawing.Point(102, 109);
+            this.importFileTextBox.Name = "importFileTextBox";
+            this.importFileTextBox.Size = new System.Drawing.Size(167, 22);
+            this.importFileTextBox.TabIndex = 27;
+            // 
+            // importButton
+            // 
+            this.importButton.Location = new System.Drawing.Point(14, 106);
+            this.importButton.Name = "importButton";
+            this.importButton.Size = new System.Drawing.Size(75, 30);
+            this.importButton.TabIndex = 3;
+            this.importButton.Text = "Import";
+            this.importButton.UseVisualStyleBackColor = true;
+            this.importButton.Click += new System.EventHandler(this.ImportButton_Click);
             // 
             // preprocessingPanel
             // 
             this.preprocessingPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.preprocessingPanel.Controls.Add(this.Time_Disp_chart);
-            this.preprocessingPanel.Controls.Add(this.ta_chart);
+            this.preprocessingPanel.Controls.Add(this.timeDisplacementChart);
+            this.preprocessingPanel.Controls.Add(this.timeAccelerationChart);
             this.preprocessingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.preprocessingPanel.Location = new System.Drawing.Point(284, 0);
             this.preprocessingPanel.Name = "preprocessingPanel";
             this.preprocessingPanel.Size = new System.Drawing.Size(883, 611);
             this.preprocessingPanel.TabIndex = 1;
             // 
-            // Time_Disp_chart
+            // timeDisplacementChart
             // 
-            chartArea11.Name = "ChartArea1";
-            this.Time_Disp_chart.ChartAreas.Add(chartArea11);
-            this.Time_Disp_chart.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Time_Disp_chart.Location = new System.Drawing.Point(0, 311);
-            this.Time_Disp_chart.Name = "Time_Disp_chart";
-            series11.ChartArea = "ChartArea1";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series11.Name = "Series1";
-            this.Time_Disp_chart.Series.Add(series11);
-            this.Time_Disp_chart.Size = new System.Drawing.Size(883, 300);
-            this.Time_Disp_chart.TabIndex = 3;
-            this.Time_Disp_chart.Text = "chart1";
-            title11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            title11.Name = "Title1";
-            title11.Text = "Time-Displacement";
-            this.Time_Disp_chart.Titles.Add(title11);
+            chartArea1.Name = "ChartArea1";
+            this.timeDisplacementChart.ChartAreas.Add(chartArea1);
+            this.timeDisplacementChart.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.timeDisplacementChart.Location = new System.Drawing.Point(0, 311);
+            this.timeDisplacementChart.Name = "timeDisplacementChart";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Name = "Series1";
+            this.timeDisplacementChart.Series.Add(series1);
+            this.timeDisplacementChart.Size = new System.Drawing.Size(883, 300);
+            this.timeDisplacementChart.TabIndex = 3;
+            this.timeDisplacementChart.Text = "chart1";
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            title1.Name = "Title1";
+            title1.Text = "Time-Displacement";
+            this.timeDisplacementChart.Titles.Add(title1);
             // 
-            // ta_chart
+            // timeAccelerationChart
             // 
-            chartArea12.Name = "ChartArea1";
-            this.ta_chart.ChartAreas.Add(chartArea12);
-            this.ta_chart.Dock = System.Windows.Forms.DockStyle.Top;
-            legend6.Enabled = false;
-            legend6.Name = "Legend1";
-            this.ta_chart.Legends.Add(legend6);
-            this.ta_chart.Location = new System.Drawing.Point(0, 0);
-            this.ta_chart.Name = "ta_chart";
-            series12.ChartArea = "ChartArea1";
-            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series12.IsVisibleInLegend = false;
-            series12.Legend = "Legend1";
-            series12.Name = "Serie 1";
-            series12.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.ta_chart.Series.Add(series12);
-            this.ta_chart.Size = new System.Drawing.Size(883, 300);
-            this.ta_chart.TabIndex = 0;
-            this.ta_chart.Text = "Time_Acceleration";
-            title12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            title12.Name = "Title1";
-            title12.Text = "Time-Acceleration";
-            this.ta_chart.Titles.Add(title12);
+            chartArea2.Name = "ChartArea1";
+            this.timeAccelerationChart.ChartAreas.Add(chartArea2);
+            this.timeAccelerationChart.Dock = System.Windows.Forms.DockStyle.Top;
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.timeAccelerationChart.Legends.Add(legend1);
+            this.timeAccelerationChart.Location = new System.Drawing.Point(0, 0);
+            this.timeAccelerationChart.Name = "timeAccelerationChart";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "Serie 1";
+            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.timeAccelerationChart.Series.Add(series2);
+            this.timeAccelerationChart.Size = new System.Drawing.Size(883, 300);
+            this.timeAccelerationChart.TabIndex = 0;
+            this.timeAccelerationChart.Text = "Time_Acceleration";
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            title2.Name = "Title1";
+            title2.Text = "Time-Acceleration";
+            this.timeAccelerationChart.Titles.Add(title2);
             // 
             // Preprocessing
             // 
@@ -205,11 +271,11 @@
             this.Size = new System.Drawing.Size(1167, 611);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.td_DG)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImportDG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeDisplacementDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeAccelerationDataGrid)).EndInit();
             this.preprocessingPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Time_Disp_chart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ta_chart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeDisplacementChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeAccelerationChart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -218,14 +284,20 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel preprocessingPanel;
-        private System.Windows.Forms.TextBox ImportFile;
-        private System.Windows.Forms.Button ImportButton;
-        private System.Windows.Forms.DataGridView ImportDG;
-        private System.Windows.Forms.DataVisualization.Charting.Chart ta_chart;
-        private System.Windows.Forms.DataVisualization.Charting.Chart Time_Disp_chart;
-        private System.Windows.Forms.Button Convert_ta_ts;
-        private System.Windows.Forms.DataGridView td_DG;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button ExportFSButton;
+        private System.Windows.Forms.TextBox importFileTextBox;
+        private System.Windows.Forms.Button importButton;
+        private System.Windows.Forms.DataGridView timeAccelerationDataGrid;
+        private System.Windows.Forms.DataVisualization.Charting.Chart timeAccelerationChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart timeDisplacementChart;
+        private System.Windows.Forms.Button convertToTimeDisplacementButton;
+        private System.Windows.Forms.DataGridView timeDisplacementDataGrid;
+        private System.Windows.Forms.TextBox exportFileTextBox;
+        private System.Windows.Forms.Button exportButton;
+        private System.Windows.Forms.Label unitOfAccelerationLabel;
+        private System.Windows.Forms.ComboBox unitOfAcceleration;
+        private System.Windows.Forms.Label skipHeaderLinesText;
+        private System.Windows.Forms.TextBox skipHeaderLines;
+        private System.Windows.Forms.Label delimiterText;
+        private System.Windows.Forms.ComboBox delimiterOptions;
     }
 }
