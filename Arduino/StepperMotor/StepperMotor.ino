@@ -14,8 +14,7 @@ const double num_steps_per_cm = base_steps_per_revolution/6.9;
 
 double start_position = 0.0;
 double end_position = 0.0;
-// ----------------- Change the time step if you need -------------------------
-double time_step_ms = 10.0; // 10 ms = 0.01s time step for movement
+double time_step_ms = 0.0;
 
 unsigned long previousMillis = 0;
 
@@ -29,6 +28,32 @@ void setup()
 void loop()
 {
   unsigned long currentMillis = millis();
+
+  if (time_step_ms == 0.0 && Serial.available() > 0)
+  {
+    String receivedTimeData = Serial.readStringUntil('\n'); // Read until '\n'
+    receivedTimeData.trim(); // Remove any whitespace or extra characters
+
+    int startIndex = 0;
+    while (startIndex < receivedTimeData.length() && !isdigit(receivedTimeData[startIndex])) {
+        startIndex++; // Skip over non-numeric characters
+    }
+
+    // If we found a numeric character, extract the numeric portion of the string
+    if (startIndex < receivedTimeData.length()) {
+        receivedTimeData = receivedTimeData.substring(startIndex); // Keep the part from the first digit onwards
+    }
+
+    time_step_ms = receivedTimeData.toDouble();
+
+    if (time_step_ms != 0.0) {
+        Serial.println("Timestep OK"); // Send acknowledgment
+    } else {
+        Serial.println("Invalid Data");
+    }
+
+    return;
+  }
 
   if(currentMillis - previousMillis >= time_step_ms)
   {

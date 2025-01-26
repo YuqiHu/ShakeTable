@@ -29,15 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title6 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.timestepsText = new System.Windows.Forms.Label();
+            this.timesteps = new System.Windows.Forms.TextBox();
             this.Past_GMs = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox_comPort = new System.Windows.Forms.ComboBox();
@@ -60,6 +62,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.timestepsText);
+            this.panel1.Controls.Add(this.timesteps);
             this.panel1.Controls.Add(this.Past_GMs);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.comboBox_comPort);
@@ -75,6 +79,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 611);
             this.panel1.TabIndex = 1;
+            // 
+            // timestepsText
+            // 
+            this.timestepsText.AutoSize = true;
+            this.timestepsText.Location = new System.Drawing.Point(11, 326);
+            this.timestepsText.Name = "timestepsText";
+            this.timestepsText.Size = new System.Drawing.Size(89, 16);
+            this.timestepsText.TabIndex = 64;
+            this.timestepsText.Text = "Timesteps (s)";
+            // 
+            // timesteps
+            // 
+            this.timesteps.Location = new System.Drawing.Point(102, 323);
+            this.timesteps.Name = "timesteps";
+            this.timesteps.Size = new System.Drawing.Size(169, 22);
+            this.timesteps.TabIndex = 13;
             // 
             // Past_GMs
             // 
@@ -95,7 +115,7 @@
             this.Past_GMs.Location = new System.Drawing.Point(102, 292);
             this.Past_GMs.Name = "Past_GMs";
             this.Past_GMs.Size = new System.Drawing.Size(167, 24);
-            this.Past_GMs.TabIndex = 33;
+            this.Past_GMs.TabIndex = 12;
             // 
             // label1
             // 
@@ -112,7 +132,7 @@
             this.comboBox_comPort.Location = new System.Drawing.Point(102, 258);
             this.comboBox_comPort.Name = "comboBox_comPort";
             this.comboBox_comPort.Size = new System.Drawing.Size(167, 24);
-            this.comboBox_comPort.TabIndex = 31;
+            this.comboBox_comPort.TabIndex = 11;
             // 
             // COM_PORT
             // 
@@ -125,17 +145,17 @@
             // 
             // ImportFile
             // 
-            this.ImportFile.Location = new System.Drawing.Point(102, 337);
+            this.ImportFile.Location = new System.Drawing.Point(102, 363);
             this.ImportFile.Name = "ImportFile";
             this.ImportFile.Size = new System.Drawing.Size(167, 22);
             this.ImportFile.TabIndex = 29;
             // 
             // ImportButton
             // 
-            this.ImportButton.Location = new System.Drawing.Point(14, 335);
+            this.ImportButton.Location = new System.Drawing.Point(14, 361);
             this.ImportButton.Name = "ImportButton";
             this.ImportButton.Size = new System.Drawing.Size(75, 30);
-            this.ImportButton.TabIndex = 28;
+            this.ImportButton.TabIndex = 14;
             this.ImportButton.Text = "Import";
             this.ImportButton.UseVisualStyleBackColor = true;
             this.ImportButton.Click += new System.EventHandler(this.ImportButton_Click);
@@ -199,57 +219,57 @@
             // 
             // Time_Disp_Monitor
             // 
-            chartArea1.Name = "ChartArea1";
-            this.Time_Disp_Monitor.ChartAreas.Add(chartArea1);
+            chartArea5.Name = "ChartArea1";
+            this.Time_Disp_Monitor.ChartAreas.Add(chartArea5);
             this.Time_Disp_Monitor.Dock = System.Windows.Forms.DockStyle.Bottom;
-            legend1.DockedToChartArea = "ChartArea1";
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend1.Name = "Theoretical";
-            this.Time_Disp_Monitor.Legends.Add(legend1);
+            legend5.DockedToChartArea = "ChartArea1";
+            legend5.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend5.Name = "Theoretical";
+            this.Time_Disp_Monitor.Legends.Add(legend5);
             this.Time_Disp_Monitor.Location = new System.Drawing.Point(0, 311);
             this.Time_Disp_Monitor.Name = "Time_Disp_Monitor";
             this.Time_Disp_Monitor.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Theoretical";
-            series1.Name = "Serie 1";
-            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.Time_Disp_Monitor.Series.Add(series1);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.IsVisibleInLegend = false;
+            series5.Legend = "Theoretical";
+            series5.Name = "Serie 1";
+            series5.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.Time_Disp_Monitor.Series.Add(series5);
             this.Time_Disp_Monitor.Size = new System.Drawing.Size(883, 300);
             this.Time_Disp_Monitor.TabIndex = 2;
             this.Time_Disp_Monitor.Text = "Time_Disp_Monitor";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            title1.Name = "Title1";
-            title1.Text = "Time-Displacement";
-            this.Time_Disp_Monitor.Titles.Add(title1);
+            title5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            title5.Name = "Title1";
+            title5.Text = "Time-Displacement";
+            this.Time_Disp_Monitor.Titles.Add(title5);
             // 
             // Time_Accel_Monitor
             // 
-            chartArea2.Name = "ChartArea1";
-            this.Time_Accel_Monitor.ChartAreas.Add(chartArea2);
+            chartArea6.Name = "ChartArea1";
+            this.Time_Accel_Monitor.ChartAreas.Add(chartArea6);
             this.Time_Accel_Monitor.Dock = System.Windows.Forms.DockStyle.Top;
-            legend2.DockedToChartArea = "ChartArea1";
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend2.Name = "Theoretical";
-            this.Time_Accel_Monitor.Legends.Add(legend2);
+            legend6.DockedToChartArea = "ChartArea1";
+            legend6.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend6.Name = "Theoretical";
+            this.Time_Accel_Monitor.Legends.Add(legend6);
             this.Time_Accel_Monitor.Location = new System.Drawing.Point(0, 0);
             this.Time_Accel_Monitor.Name = "Time_Accel_Monitor";
             this.Time_Accel_Monitor.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Theoretical";
-            series2.Name = "Serie 1";
-            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.Time_Accel_Monitor.Series.Add(series2);
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.IsVisibleInLegend = false;
+            series6.Legend = "Theoretical";
+            series6.Name = "Serie 1";
+            series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.Time_Accel_Monitor.Series.Add(series6);
             this.Time_Accel_Monitor.Size = new System.Drawing.Size(883, 300);
             this.Time_Accel_Monitor.TabIndex = 1;
             this.Time_Accel_Monitor.Text = "Time_Accel_Monitor";
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            title2.Name = "Title1";
-            title2.Text = "Time-Acceleration";
-            this.Time_Accel_Monitor.Titles.Add(title2);
+            title6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            title6.Name = "Title1";
+            title6.Text = "Time-Acceleration";
+            this.Time_Accel_Monitor.Titles.Add(title6);
             // 
             // Arduino_Table_Control
             // 
@@ -291,5 +311,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart Time_Accel_Monitor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox Past_GMs;
+        private System.Windows.Forms.Label timestepsText;
+        private System.Windows.Forms.TextBox timesteps;
     }
 }

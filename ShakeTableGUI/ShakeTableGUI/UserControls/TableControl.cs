@@ -75,18 +75,27 @@ namespace ShakeTableGUI.UserControls
                 {
                     try
                     {
-                        //double timeStep = 0.01;
-                        //// Send the time step once
-                        //serialPort.WriteLine(timeStep.ToString("F6"));
-                        //Console.WriteLine($"Sent Time Step: {timeStep}");
+                        if (!double.TryParse(timesteps.Text, out double timeStep))
+                        {
+                            MessageBox.Show("Invalid input. Please enter valid numeric values for all fields.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
 
-                        //// Wait for acknowledgment from Arduino
-                        //string response = serialPort.ReadLine().Trim();
-                        //if (response != "OK")
-                        //{
-                        //    Console.WriteLine($"Unexpected response: {response}");
-                        //    return;
-                        //}
+                        // Send the time step once
+                        serialPort.DiscardInBuffer();
+                        serialPort.DiscardOutBuffer();
+                        serialPort.WriteLine(timeStep.ToString("F6"));
+                        Console.WriteLine($"Sent Time Step: {timeStep}");
+
+                        // Wait for acknowledgment from Arduino
+                        string time_response = serialPort.ReadLine().Trim();
+                        if (time_response != "Timestep OK")
+                        {
+                            Console.WriteLine($"Unexpected response: {time_response}");
+                            return;
+                        }
+
+                        Console.WriteLine("Timestep acknowledged by Arduino.");
 
                         // Send displacement values
                         foreach (double value in displacement)
@@ -270,6 +279,5 @@ namespace ShakeTableGUI.UserControls
             Time_Disp_Monitor.ChartAreas[0].AxisY.TitleFont = new Font("Microsoft San Serif", 11f);
 
         }
-
     }
 }
