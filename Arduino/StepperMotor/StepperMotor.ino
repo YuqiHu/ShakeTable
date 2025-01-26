@@ -3,14 +3,14 @@
 
 #define factor_of_precision 100000
 
-// 200 steps = 1 revolution = 7.2 cm of shake table movement
+// 200 steps = 1 revolution = 6.9 cm of shake table movement
 const int pulse_per_revolution = 2000;
 const int base_steps_per_revolution = 200;
 const double speed_scale_factor = pulse_per_revolution/base_steps_per_revolution;
 const double disp_scale_factor = speed_scale_factor;
 
 // Calculate how many steps per cm
-const double num_steps_per_cm = pulse_per_revolution/7.2;
+const double num_steps_per_cm = base_steps_per_revolution/6.9;
 
 double start_position = 0.0;
 double end_position = 0.0;
@@ -57,7 +57,7 @@ void loop()
           digitalWrite(directionPin, HIGH); // Counterclockwise
         }
 
-        int step_delay = (time_step_ms * 1000) / (2 * num_steps); // Microseconds
+        int step_delay = (time_step_ms * 1000) / (2 * num_steps * disp_scale_factor); // Microseconds
         step_delay = max(step_delay, 2);
 
         for (int i = 0; i < num_steps; i++)

@@ -21,7 +21,7 @@ namespace ShakeTableGUI.UserControls
         SerialPort serialPort;
         double[] time;
         double[] displacement;
-        private CancellationTokenSource cancellationTokenSource;
+        private bool stopRequested = false;
         const double m_to_cm = 100.0;
         const double factor_of_precision = 100000.0;
         public TableControl()
@@ -42,7 +42,7 @@ namespace ShakeTableGUI.UserControls
             comboBox_comPort.Items.AddRange(ports);
         }
 
-        private void Start_Click(object sender, EventArgs e)
+        private async void Start_Click(object sender, EventArgs e)
         {
             // Get the selected com_port from the comboBox
             string com_port = comboBox_comPort.Text;
@@ -69,74 +69,75 @@ namespace ShakeTableGUI.UserControls
                 return;
             }
 
+            stopRequested = false;
+
+            
             // Send the instruction to Arduino board
             if (serialPort.IsOpen)
             {
-                cancellationTokenSource = new CancellationTokenSource();
-                var token = cancellationTokenSource.Token;
-
-                try
+                await Task.Run(() =>
                 {
-                    //double timeStep = 0.01;
-                    //// Send the time step once
-                    //serialPort.WriteLine(timeStep.ToString("F6"));
-                    //Console.WriteLine($"Sent Time Step: {timeStep}");
-
-                    //// Wait for acknowledgment from Arduino
-                    //string response = serialPort.ReadLine().Trim();
-                    //if (response != "OK")
-                    //{
-                    //    Console.WriteLine($"Unexpected response: {response}");
-                    //    return;
-                    //}
-
-                    // Send displacement values
-                    foreach (double value in displacement)
+                    try
                     {
-                        double valueIncm = value * m_to_cm;
-                        valueIncm = valueIncm * factor_of_precision;
-                        string data = valueIncm.ToString("F6");
-                        serialPort.WriteLine(data);
-                        Console.WriteLine($"Sent Displacement: {data}");
+                        //double timeStep = 0.01;
+                        //// Send the time step once
+                        //serialPort.WriteLine(timeStep.ToString("F6"));
+                        //Console.WriteLine($"Sent Time Step: {timeStep}");
 
-                        // Wait for acknowledgment from Arduino
-                        string response = serialPort.ReadLine().Trim();
-                        if (response != "OK")
+                        //// Wait for acknowledgment from Arduino
+                        //string response = serialPort.ReadLine().Trim();
+                        //if (response != "OK")
+                        //{
+                        //    Console.WriteLine($"Unexpected response: {response}");
+                        //    return;
+                        //}
+
+                        // Send displacement values
+                        foreach (double value in displacement)
                         {
-                            Console.WriteLine($"Unexpected response: {response}");
-                            break;
+                            if (stopRequested)
+                            {
+                                Console.WriteLine("Data transfer stopped by user.");
+                                break;
+                            }
+
+                            double valueIncm = value * m_to_cm;
+                            valueIncm = valueIncm * factor_of_precision;
+                            string data = valueIncm.ToString("F6");
+                            serialPort.WriteLine(data);
+                            Console.WriteLine($"Sent Displacement: {data}");
+
+                            // Wait for acknowledgment from Arduino
+                            string response = serialPort.ReadLine().Trim();
+                            if (response != "OK")
+                            {
+                                Console.WriteLine($"Unexpected response: {response}");
+                                break;
+                            }
+                            //Console.WriteLine($"response: {response}");
                         }
-                        //Console.WriteLine($"response: {response}");
                     }
-                }
-                catch (OperationCanceledException)
-                {
-                    Console.WriteLine("Data transfer was cancelled.");
-                }
-                catch (IOException ex)
-                {
-                    Console.WriteLine("Error while communicating with the Arduino:");
-                    Console.WriteLine(ex.Message);
-                }
-                finally
-                {
-                    // Ensure the serial port is always closed
-                    serialPort.Close();
-                }
+                    catch (OperationCanceledException)
+                    {
+                        Console.WriteLine("Data transfer was cancelled.");
+                    }
+                    catch (IOException ex)
+                    {
+                        Console.WriteLine("Error while communicating with the Arduino:");
+                        Console.WriteLine(ex.Message);
+                    }
+                    finally
+                    {
+                        // Ensure the serial port is always closed
+                        serialPort.Close();
+                    }
+                });
             }
         }
 
         private void Stop_Click(object sender, EventArgs e)
         {
-            if (cancellationTokenSource != null && !cancellationTokenSource.Token.IsCancellationRequested)
-            {
-                cancellationTokenSource.Cancel(); // This will cancel the ongoing data transfer
-                Console.WriteLine("Data transfer has been stopped.");
-            }
-            else
-            {
-                Console.WriteLine("No data transfer is in progress.");
-            }
+            stopRequested = true;
         }
 
         private void ImportButton_Click(object sender, EventArgs e)
