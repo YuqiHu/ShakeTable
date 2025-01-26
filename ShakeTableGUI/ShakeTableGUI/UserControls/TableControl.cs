@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace ShakeTableGUI.UserControls
 {
@@ -17,11 +19,17 @@ namespace ShakeTableGUI.UserControls
     {
 
         SerialPort serialPort;
-
+        double[] time;
+        double[] displacement;
+        private CancellationTokenSource cancellationTokenSource;
+        const double m_to_cm = 100.0;
+        const double factor_of_precision = 100000.0;
         public TableControl()
         {
             InitializeComponent();
             InitializeSerialPorts();
+            //plot_time_accel_monitor();
+            //plot_time_disp_monitor();
 
         }
 
@@ -46,7 +54,8 @@ namespace ShakeTableGUI.UserControls
             }
 
             // Set the serial port
-            serialPort = new SerialPort(com_port, 500000);
+            int baudRate = 500000;
+            serialPort = new SerialPort(com_port, baudRate);
 
             try
             {
@@ -63,30 +72,70 @@ namespace ShakeTableGUI.UserControls
             // Send the instruction to Arduino board
             if (serialPort.IsOpen)
             {
+                cancellationTokenSource = new CancellationTokenSource();
+                var token = cancellationTokenSource.Token;
+
                 try
                 {
-                    ReadFile();
+                    //double timeStep = 0.01;
+                    //// Send the time step once
+                    //serialPort.WriteLine(timeStep.ToString("F6"));
+                    //Console.WriteLine($"Sent Time Step: {timeStep}");
+
+                    //// Wait for acknowledgment from Arduino
+                    //string response = serialPort.ReadLine().Trim();
+                    //if (response != "OK")
+                    //{
+                    //    Console.WriteLine($"Unexpected response: {response}");
+                    //    return;
+                    //}
+
+                    // Send displacement values
+                    foreach (double value in displacement)
+                    {
+                        double valueIncm = value * m_to_cm;
+                        valueIncm = valueIncm * factor_of_precision;
+                        string data = valueIncm.ToString("F6");
+                        serialPort.WriteLine(data);
+                        Console.WriteLine($"Sent Displacement: {data}");
+
+                        // Wait for acknowledgment from Arduino
+                        string response = serialPort.ReadLine().Trim();
+                        if (response != "OK")
+                        {
+                            Console.WriteLine($"Unexpected response: {response}");
+                            break;
+                        }
+                        //Console.WriteLine($"response: {response}");
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    Console.WriteLine("Data transfer was cancelled.");
                 }
                 catch (IOException ex)
                 {
-                    Console.WriteLine("Error reading file:");
+                    Console.WriteLine("Error while communicating with the Arduino:");
                     Console.WriteLine(ex.Message);
                 }
                 finally
                 {
                     // Ensure the serial port is always closed
-                    serialPort.Close(); 
+                    serialPort.Close();
                 }
             }
         }
 
         private void Stop_Click(object sender, EventArgs e)
         {
-            // Send command to the Arduino to turn pin 11 off
-            if (serialPort.IsOpen)
+            if (cancellationTokenSource != null && !cancellationTokenSource.Token.IsCancellationRequested)
             {
-                //Console.WriteLine("No");
-                serialPort.Write("0");
+                cancellationTokenSource.Cancel(); // This will cancel the ongoing data transfer
+                Console.WriteLine("Data transfer has been stopped.");
+            }
+            else
+            {
+                Console.WriteLine("No data transfer is in progress.");
             }
         }
 
@@ -110,6 +159,9 @@ namespace ShakeTableGUI.UserControls
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 ImportFile.Text = openFileDialog1.FileName;
+                int skip_header_lines = 1;
+
+                (time, displacement) = DataProcessor.ReadTimeDisplacementData(ImportFile.Text, skip_header_lines);
             }
         }
 
@@ -135,15 +187,15 @@ namespace ShakeTableGUI.UserControls
                     serialPort.WriteLine(line + "#");
                     Console.WriteLine("Send" + line);
 
-                    // Receive the feedback from Arduino
-                    string receivedData = serialPort.ReadLine();
-                    Console.WriteLine("Feedback from Arduino: " + receivedData);
+                    //// Receive the feedback from Arduino
+                    //string receivedData = serialPort.ReadLine();
+                    //Console.WriteLine("Feedback from Arduino: " + receivedData);
 
-                    if (receivedData.Contains("wait"))
-                    {
-                        Console.WriteLine("Waiting for Arduino...");
-                        WaitForResponse("continue");
-                    }
+                    //if (receivedData.Contains("wait"))
+                    //{
+                    //    Console.WriteLine("Waiting for Arduino...");
+                    //    WaitForResponse("continue");
+                    //}
 
                 }
             }
@@ -157,6 +209,69 @@ namespace ShakeTableGUI.UserControls
                 receivedData = serialPort.ReadLine();
                 Console.WriteLine("Received: " + receivedData);
             } while (!receivedData.Contains(expectedResponse));
+        }
+
+        private void plot_time_accel_monitor()
+        {
+            // Initialize the chart
+            Time_Accel_Monitor.Series.Clear();
+            Time_Accel_Monitor.Series.Add(new Series("Theoretical"));
+            Time_Accel_Monitor.Series["Theoretical"].ChartType = SeriesChartType.Line;
+            Time_Accel_Monitor.ChartAreas["ChartArea1"].AxisX.Minimum = 0;
+            Time_Accel_Monitor.ChartAreas["ChartArea1"].AxisX.Interval = 5.00;
+
+            Preprocessing preProcessing = new Preprocessing();
+
+            if(preProcessing.time != null && preProcessing.acceleration != null) 
+            {
+                Time_Accel_Monitor.Series["Theoretical"].Points.AddXY(preProcessing.time, preProcessing.acceleration);
+            }
+
+            // X and Y axies title
+            Time_Accel_Monitor.ChartAreas[0].AxisX.Title = "Time (s)";
+            Time_Accel_Monitor.ChartAreas[0].AxisY.Title = "Acceleration (g)";
+
+            // Increase font size of the axis titles
+            Time_Accel_Monitor.ChartAreas[0].AxisX.TitleFont = new Font("Microsoft San Serif", 12f);
+            Time_Accel_Monitor.ChartAreas[0].AxisY.TitleFont = new Font("Microsoft San Serif", 12f);
+
+        }
+
+        private void plot_time_disp_monitor()
+        {
+            // Initialize the chart
+            Time_Disp_Monitor.Series.Clear();
+            Time_Disp_Monitor.Series.Add(new Series("Theoretical"));
+            Time_Disp_Monitor.Series["Theoretical"].ChartType = SeriesChartType.Line;
+            Time_Disp_Monitor.ChartAreas["ChartArea1"].AxisX.Minimum = 0;
+            Time_Disp_Monitor.ChartAreas["ChartArea1"].AxisX.Interval = 5.00;
+
+
+            // Extract data from DataGridView and plot into Line Chart
+            using (StreamReader sr = new StreamReader("../../../../GroundMotions/2022_GM2.txt"))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    // Split the line by delimiter
+                    string[] parts = line.Split('\t');
+
+                    // Assuming the first column is X and the second column is Y
+                    if (parts.Length >= 2 && double.TryParse(parts[0], out double x) && double.TryParse(parts[1], out double y))
+                    {
+                        Time_Disp_Monitor.Series["Theoretical"].Points.AddXY(x, y);
+                    }
+                }
+            }
+
+            // X and Y axies title
+            Time_Disp_Monitor.ChartAreas[0].AxisX.Title = "Time (s)";
+            Time_Disp_Monitor.ChartAreas[0].AxisY.Title = "Displacement (mm)";
+
+            // Increase font size of the axis titles
+            Time_Disp_Monitor.ChartAreas[0].AxisX.TitleFont = new Font("Microsoft San Serif", 12f);
+            Time_Disp_Monitor.ChartAreas[0].AxisY.TitleFont = new Font("Microsoft San Serif", 11f);
+
         }
 
     }
