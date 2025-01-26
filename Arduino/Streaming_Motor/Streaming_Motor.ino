@@ -3,12 +3,15 @@
 #define HOLDING true
 #define ON_MOVE false 
 #define PI 3.1415926535897932384626433832795
-#define BUFFER_SIZE 5
+#define BUFFER_SIZE 500
 
 const double time_step_ms = 4.50869073896708; // modify this time step in ms
 
 // 200 steps = 1 revolution = 7.2 cm of shake table movement
-const int steps_per_revolution = 1600;
+const int steps_per_revolution = 2000;
+const int base_steps_per_revolution = 200;
+const double speed_scale_factor = steps_per_revolution/base_steps_per_revolution;
+const double disp_scale_factor = speed_scale_factor;
 
 // Buffer and pointer to read the whole file line by line
 float movement_buffer[BUFFER_SIZE];
@@ -32,6 +35,29 @@ MoToStepper stepper(steps_per_revolution, STEPDIR); // steps per revolution, mod
 bool mode = ON_MOVE;
 bool moving = false;
 
+double pos_from = 0;
+double pos_to = 0;
+
+#define ledPin 13
+
+void setupTimer2() {
+  noInterrupts();
+  // Clear registers
+  TCCR2A = 0;
+  TCCR2B = 0;
+  TCNT2 = 0;
+
+  // 1000 Hz (16000000/((124+1)*128))
+  OCR2A = 124;
+  // CTC
+  TCCR2A |= (1 << WGM21);
+  // Prescaler 128
+  TCCR2B |= (1 << CS22) | (1 << CS20);
+  // Output Compare Match A Interrupt Enable
+  TIMSK2 |= (1 << OCIE2A);
+  interrupts();
+}
+
 void setup() {
   Serial.begin(500000);  // Make sure the baud rate matches the one set in your C# application
   pinMode(11, OUTPUT);
@@ -40,44 +66,16 @@ void setup() {
   stepper.setSpeedSteps(steps_per_revolution);  // = 25000 steps/second (steps in 10 seconds)
   stepper.setZero();
 
+  pinMode(ledPin, OUTPUT);
+  setupTimer2();
+
 }
 
 void loop() 
 {
   if (Serial.available() > 0) 
   {
-    readData();
-
-    double pos_from;
-  
-    if (mode == ON_MOVE && digitalRead(11) == HIGH) 
-    {
-        // Calculate steps and speed based of data
-        
-        timer = millis(); // Record current time
-        memcpy_P(&pos_from, &disp_data[counter], sizeof(double));
-        double num_steps = num_steps_per_cm * (pos_from);
-        Serial.println("Data");
-        Serial.println(counter);
-        Serial.println(num_steps);
-
-        double steps_per_msecs = num_steps/time_step_ms;
-        Serial.println(steps_per_msecs);
-
-        double steps_per_sec = steps_per_msecs * 1000;
-        
-        stepper.setSpeedSteps(steps_per_sec,0);
-        stepper.move(num_steps);
-        counter++;
-        delay(time_step_ms - millis() + timer);
-    }
-    if (counter >= sizeof(disp_data) / sizeof(disp_data[0]) - 1){
-      Serial.println("OFF");
-      digitalWrite(11, LOW);
-      mode = HOLDING;
-      counter = 0;
-    }
-    
+    readData();    
   }
 }
 
@@ -126,7 +124,7 @@ void readData()
       // Adding the new data to the movement_buffer
       movement_buffer[move_buff_ptr_write] = receivedFloat;
       
-      // If there are space to store more data
+      // // If there are space to store more data
       Serial.print("continue");
 
       // // Print received float value
@@ -136,24 +134,58 @@ void readData()
       // Increase the index
       move_buff_ptr_write++;
     }
-    else
-    {
-      // Tell C# to wait until the data used up here to continue sending data
-      // Prevent data fill up the buffer
-      if(wait_count == 0)
-      {
-        movement_buffer[move_buff_ptr_write] = receivedFloat;
-        Serial.print("Received Float: ");
-        Serial.print(movement_buffer[move_buff_ptr_write], 10); // Print with 10 decimal places
-      }
+    // else
+    // {
+    //   // Tell C# to wait until the data used up here to continue sending data
+    //   // Prevent data fill up the buffer
+    //   if(wait_count == 0)
+    //   {
+    //     movement_buffer[move_buff_ptr_write] = receivedFloat;
+    //     Serial.print("Received Float: ");
+    //     Serial.print(movement_buffer[move_buff_ptr_write], 10); // Print with 10 decimal places
+    //   }
 
-      Serial.print(wait_count);
-      Serial.println("wait");
-      wait_count++;
+    //   Serial.print(wait_count);
+    //   Serial.println("wait");
+    //   wait_count++;
 
-    }
+    // }
   }
 }
+
+  ISR(TIMER2_COMPA_vect) 
+  {
+    // If the readPTR hasn't catch up the write PTR
+    if (move_buff_ptr_read < move_buff_ptr_write)
+    {
+      // the new position will be the next data from buffer
+      pos_from = pos_to;
+      pos_to = movement_buffer[move_buff_ptr_read];
+      
+      // increase the readPTR
+      move_buff_ptr_read++;
+      // If it reaches the end of the buffer
+      if(move_buff_ptr_read == BUFFER_SIZE)
+      {
+        // Set the index back to 0
+        move_buff_ptr_read = 0;
+      }
+    }
+
+    double num_steps = num_steps_per_cm * (pos_to - pos_from) * disp_scale_factor;
+    // Serial.println("Data");
+    // Serial.println(counter);
+    // Serial.println(num_steps);
+
+    double steps_per_msecs = num_steps/time_step_ms;
+    // Serial.println(steps_per_msecs);
+
+    double steps_per_sec = steps_per_msecs * 1000 * speed_scale_factor;
+      
+    stepper.setSpeedSteps((uint16_t) steps_per_sec,0);
+    stepper.move((long) num_steps);
+  }
+
 
 
 
