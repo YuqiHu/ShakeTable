@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShakeTable));
             this.NameBar = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.Menu = new System.Windows.Forms.Panel();
@@ -134,6 +135,7 @@
             this.Controls.Add(this.PanelContainer);
             this.Controls.Add(this.Menu);
             this.Controls.Add(this.NameBar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ShakeTable";
             this.Text = "University of Toronto Seismic Design Team Shake Table";
             this.Load += new System.EventHandler(this.ShakeTable_Load);

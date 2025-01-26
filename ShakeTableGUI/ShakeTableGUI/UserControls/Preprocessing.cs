@@ -1,22 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-
-// Used for FFT
-using MathNet.Numerics.IntegralTransforms;
-// Used for Complex Numbers
-using System.Numerics;
-using MathNet.Numerics;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace ShakeTableGUI.UserControls
 {

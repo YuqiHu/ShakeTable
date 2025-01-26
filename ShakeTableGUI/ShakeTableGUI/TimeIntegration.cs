@@ -1,5 +1,4 @@
-﻿using MathNet.Numerics.Optimization;
-using System;
+﻿using System;
 using System.Linq;
 
 public class TimeDisplacementConverter
