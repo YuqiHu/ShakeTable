@@ -126,10 +126,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="GroundMotions\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="GroundMotions\Sine_Sweep_0.001.txt" />
+    <Content Include="GroundMotions\White_Noise_0.001.txt" />
     <Content Include="logo-dark.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.IO.Ports;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -20,6 +21,10 @@ namespace ShakeTableGUI.UserControls
         private bool stopRequested = false;
         const double m_to_cm = 100.0;
         const double factor_of_precision = 100000.0;
+
+        string sine_sweep_address = "GroundMotions/Sine_Sweep_0.001.txt";
+        string white_noise_address = "GroundMotions/White_Noise_0.001.txt";
+
         public TableControl()
         {
             InitializeComponent();
@@ -75,11 +80,14 @@ namespace ShakeTableGUI.UserControls
                 {
                     try
                     {
-                        if (!double.TryParse(timesteps.Text, out double timeStep))
+                        if (!double.TryParse(timesteps.Text, out double timeStepS))
                         {
                             MessageBox.Show("Invalid input. Please enter valid numeric values for all fields.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
+
+                        double s_to_ms = 1000.0;
+                        double timeStep = timeStepS * s_to_ms;
 
                         // Send the time step once
                         serialPort.DiscardInBuffer();
@@ -180,43 +188,6 @@ namespace ShakeTableGUI.UserControls
             Console.Write(indata);
         }
 
-        private void ReadFile()
-        {
-            string filePath = ImportFile.Text;
-
-            using (StreamReader sr = new StreamReader(filePath))
-            {
-                while (!sr.EndOfStream)
-                {
-                    string line = sr.ReadLine();
-                    // Write each line in the file to Arduino
-                    serialPort.WriteLine(line + "#");
-                    Console.WriteLine("Send" + line);
-
-                    //// Receive the feedback from Arduino
-                    //string receivedData = serialPort.ReadLine();
-                    //Console.WriteLine("Feedback from Arduino: " + receivedData);
-
-                    //if (receivedData.Contains("wait"))
-                    //{
-                    //    Console.WriteLine("Waiting for Arduino...");
-                    //    WaitForResponse("continue");
-                    //}
-
-                }
-            }
-        }
-
-        private void WaitForResponse(string expectedResponse)
-        {
-            string receivedData;
-            do
-            {
-                receivedData = serialPort.ReadLine();
-                Console.WriteLine("Received: " + receivedData);
-            } while (!receivedData.Contains(expectedResponse));
-        }
-
         private void plot_time_accel_monitor()
         {
             // Initialize the chart
@@ -278,6 +249,29 @@ namespace ShakeTableGUI.UserControls
             Time_Disp_Monitor.ChartAreas[0].AxisX.TitleFont = new Font("Microsoft San Serif", 12f);
             Time_Disp_Monitor.ChartAreas[0].AxisY.TitleFont = new Font("Microsoft San Serif", 11f);
 
+        }
+
+        private void Past_GMs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string groundMotionText = Past_GMs.SelectedItem.ToString();
+            if (groundMotionText == "none")
+            {
+                return;
+            }
+
+            int skip_header_lines = 0;
+
+            switch (groundMotionText)
+            {
+                case "Sine Sweep Test":
+                    (time, displacement) = DataProcessor.ReadTimeDisplacementData(sine_sweep_address, skip_header_lines);
+                    break;
+
+                case "White Noise Test":
+                    (time, displacement) = DataProcessor.ReadTimeDisplacementData(white_noise_address, skip_header_lines);
+                    break;
+
+            }
         }
     }
 }
