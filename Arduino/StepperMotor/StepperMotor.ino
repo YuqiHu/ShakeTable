@@ -4,7 +4,7 @@
 #define factor_of_precision 100000
 
 // 200 steps = 1 revolution = 6.9 cm of shake table movement
-const int pulse_per_revolution = 2000;
+const int pulse_per_revolution = 20000;
 const int base_steps_per_revolution = 200;
 const double speed_scale_factor = pulse_per_revolution/base_steps_per_revolution;
 const double disp_scale_factor = speed_scale_factor;
@@ -17,6 +17,7 @@ double end_position = 0.0;
 double time_step_ms = 0.0;
 
 unsigned long previousMillis = 0;
+int minMillis = 50;
 
 void setup()
 {
@@ -55,6 +56,15 @@ void loop()
     return;
   }
 
+  if(time_step_ms >= 10)
+  {
+    minMillis = 2; // If time steps >= 0.01 s
+  }
+  else
+  {
+    minMillis = 50; // If time steps < 0.01 s
+  }
+
   if(currentMillis - previousMillis >= time_step_ms)
   {
     previousMillis = currentMillis;
@@ -83,7 +93,7 @@ void loop()
         }
 
         int step_delay = (time_step_ms * 1000) / (2 * num_steps * disp_scale_factor); // Microseconds
-        step_delay = max(step_delay, 2);
+        step_delay = max(step_delay, minMillis);
 
         for (int i = 0; i < num_steps; i++)
         {

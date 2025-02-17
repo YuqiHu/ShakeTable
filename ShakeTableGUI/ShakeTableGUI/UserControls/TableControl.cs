@@ -22,7 +22,7 @@ namespace ShakeTableGUI.UserControls
         const double m_to_cm = 100.0;
         const double factor_of_precision = 100000.0;
 
-        string sine_sweep_address = "GroundMotions/Sine_Sweep_0.001.txt";
+        string sine_sweep_address = "GroundMotions/Sine_Sweep_0.01.txt";
         string white_noise_address = "GroundMotions/White_Noise_0.001.txt";
 
         public TableControl()

@@ -11,6 +11,14 @@
       "RelativeMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|solutionrelative:shaketablegui\\dataprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\shaketablegui\\timeintegration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|solutionrelative:shaketablegui\\timeintegration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\shaketablegui\\importhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|solutionrelative:shaketablegui\\importhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\shaketablegui\\usercontrols\\tablecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|solutionrelative:shaketablegui\\usercontrols\\tablecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
@@ -25,14 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\shaketablegui\\usercontrols\\preprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|solutionrelative:shaketablegui\\usercontrols\\preprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\shaketablegui\\importhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|solutionrelative:shaketablegui\\importhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\shaketablegui\\timeintegration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|solutionrelative:shaketablegui\\timeintegration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{511E1A7C-21C8-4DE8-9E80-20D05240D285}|ShakeTableGUI\\ShakeTableGUI.csproj|C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\shaketablegui\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -77,79 +77,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Preprocessing.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\Preprocessing.cs",
-              "RelativeDocumentMoniker": "ShakeTableGUI\\UserControls\\Preprocessing.cs",
-              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\Preprocessing.cs [Design]",
-              "RelativeToolTip": "ShakeTableGUI\\UserControls\\Preprocessing.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T22:58:53.601Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ImportHelper.cs",
-              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\ImportHelper.cs",
-              "RelativeDocumentMoniker": "ShakeTableGUI\\ImportHelper.cs",
-              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\ImportHelper.cs",
-              "RelativeToolTip": "ShakeTableGUI\\ImportHelper.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAwFMAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T19:31:25.574Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Preprocessing.cs",
-              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\Preprocessing.cs",
-              "RelativeDocumentMoniker": "ShakeTableGUI\\UserControls\\Preprocessing.cs",
-              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\Preprocessing.cs",
-              "RelativeToolTip": "ShakeTableGUI\\UserControls\\Preprocessing.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T23:01:00.176Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DataProcessor.cs",
-              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\DataProcessor.cs",
-              "RelativeDocumentMoniker": "ShakeTableGUI\\DataProcessor.cs",
-              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\DataProcessor.cs",
-              "RelativeToolTip": "ShakeTableGUI\\DataProcessor.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAUwC0AAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T19:30:40.299Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TableControl.cs",
-              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\TableControl.cs",
-              "RelativeDocumentMoniker": "ShakeTableGUI\\UserControls\\TableControl.cs",
-              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\TableControl.cs",
-              "RelativeToolTip": "ShakeTableGUI\\UserControls\\TableControl.cs",
-              "ViewState": "AQIAAFwAAAAAAAAAAAAgwFoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T19:25:44.194Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "PostProcessing.cs",
-              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\PostProcessing.cs",
-              "RelativeDocumentMoniker": "ShakeTableGUI\\UserControls\\PostProcessing.cs",
-              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\PostProcessing.cs",
-              "RelativeToolTip": "ShakeTableGUI\\UserControls\\PostProcessing.cs",
-              "ViewState": "AQIAAH4BAAAAAAAAAAAIwJIBAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T18:15:18.77Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "TableControl.cs [Design]",
               "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\TableControl.cs",
               "RelativeDocumentMoniker": "ShakeTableGUI\\UserControls\\TableControl.cs",
@@ -172,6 +100,83 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TimeIntegration.cs",
+              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\TimeIntegration.cs",
+              "RelativeDocumentMoniker": "ShakeTableGUI\\TimeIntegration.cs",
+              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\TimeIntegration.cs",
+              "RelativeToolTip": "ShakeTableGUI\\TimeIntegration.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-26T19:40:14.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DataProcessor.cs",
+              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\DataProcessor.cs",
+              "RelativeDocumentMoniker": "ShakeTableGUI\\DataProcessor.cs",
+              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\DataProcessor.cs",
+              "RelativeToolTip": "ShakeTableGUI\\DataProcessor.cs",
+              "ViewState": "AQIAACwAAAAAAAAAAIAwwC0AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T19:30:40.299Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TableControl.cs",
+              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\TableControl.cs",
+              "RelativeDocumentMoniker": "ShakeTableGUI\\UserControls\\TableControl.cs",
+              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\TableControl.cs",
+              "RelativeToolTip": "ShakeTableGUI\\UserControls\\TableControl.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAuwBgAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T19:25:44.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PostProcessing.cs",
+              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\PostProcessing.cs",
+              "RelativeDocumentMoniker": "ShakeTableGUI\\UserControls\\PostProcessing.cs",
+              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\PostProcessing.cs",
+              "RelativeToolTip": "ShakeTableGUI\\UserControls\\PostProcessing.cs",
+              "ViewState": "AQIAAH4BAAAAAAAAAAAIwJIBAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-26T18:15:18.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Preprocessing.cs",
+              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\Preprocessing.cs",
+              "RelativeDocumentMoniker": "ShakeTableGUI\\UserControls\\Preprocessing.cs",
+              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\Preprocessing.cs",
+              "RelativeToolTip": "ShakeTableGUI\\UserControls\\Preprocessing.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T23:01:00.176Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ImportHelper.cs",
+              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\ImportHelper.cs",
+              "RelativeDocumentMoniker": "ShakeTableGUI\\ImportHelper.cs",
+              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\ImportHelper.cs",
+              "RelativeToolTip": "ShakeTableGUI\\ImportHelper.cs",
+              "ViewState": "AQIAAEUAAAAAAAAAAADgv1MAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-26T19:31:25.574Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 11,
               "Title": "PostProcessing.cs [Design]",
               "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\PostProcessing.cs",
@@ -179,11 +184,23 @@
               "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\PostProcessing.cs [Design]",
               "RelativeToolTip": "ShakeTableGUI\\UserControls\\PostProcessing.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T19:31:31.54Z"
+              "WhenOpened": "2025-01-26T19:31:31.54Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
+              "Title": "Preprocessing.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\Preprocessing.cs",
+              "RelativeDocumentMoniker": "ShakeTableGUI\\UserControls\\Preprocessing.cs",
+              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\Preprocessing.cs [Design]",
+              "RelativeToolTip": "ShakeTableGUI\\UserControls\\Preprocessing.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T22:58:53.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "TableControl.Designer.cs",
               "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\TableControl.Designer.cs",
               "RelativeDocumentMoniker": "ShakeTableGUI\\UserControls\\TableControl.Designer.cs",
@@ -204,18 +221,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2025-01-26T19:38:47.217Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "TimeIntegration.cs",
-              "DocumentMoniker": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\TimeIntegration.cs",
-              "RelativeDocumentMoniker": "ShakeTableGUI\\TimeIntegration.cs",
-              "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\TimeIntegration.cs",
-              "RelativeToolTip": "ShakeTableGUI\\TimeIntegration.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T19:40:14.664Z"
             },
             {
               "$type": "Document",
