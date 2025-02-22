@@ -84,7 +84,8 @@
               "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\TableControl.cs [Design]",
               "RelativeToolTip": "ShakeTableGUI\\UserControls\\TableControl.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T19:25:28.895Z"
+              "WhenOpened": "2025-01-19T19:25:28.895Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -108,8 +109,7 @@
               "RelativeToolTip": "ShakeTableGUI\\TimeIntegration.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T19:40:14.664Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-26T19:40:14.664Z"
             },
             {
               "$type": "Document",
@@ -121,8 +121,7 @@
               "RelativeToolTip": "ShakeTableGUI\\DataProcessor.cs",
               "ViewState": "AQIAACwAAAAAAAAAAIAwwC0AAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T19:30:40.299Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-19T19:30:40.299Z"
             },
             {
               "$type": "Document",
@@ -147,8 +146,7 @@
               "RelativeToolTip": "ShakeTableGUI\\UserControls\\PostProcessing.cs",
               "ViewState": "AQIAAH4BAAAAAAAAAAAIwJIBAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T18:15:18.77Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-26T18:15:18.77Z"
             },
             {
               "$type": "Document",
@@ -172,8 +170,7 @@
               "RelativeToolTip": "ShakeTableGUI\\ImportHelper.cs",
               "ViewState": "AQIAAEUAAAAAAAAAAADgv1MAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T19:31:25.574Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-26T19:31:25.574Z"
             },
             {
               "$type": "Document",
@@ -184,8 +181,7 @@
               "ToolTip": "C:\\Users\\yuqih\\Documents\\GitHub\\ShakeTable\\ShakeTableGUI\\ShakeTableGUI\\UserControls\\PostProcessing.cs [Design]",
               "RelativeToolTip": "ShakeTableGUI\\UserControls\\PostProcessing.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T19:31:31.54Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-01-26T19:31:31.54Z"
             },
             {
               "$type": "Document",
