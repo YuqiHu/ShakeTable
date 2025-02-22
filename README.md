@@ -1,6 +1,10 @@
 # ShakeTable
 This is the 2023-2024 multidisciplinary capstone project 13 at the University of Toronto. This is the code to run the University of Toronto Seismic Design Team shake table.
 
+# 0. Program Files
+
+To run the Shake Table program on your computer, copy the whole release folder from **ShakeTableGUI/ShakeTableGUI/bin/Release** and open **ShakeTableGUI.exe**.
+
 # 1. Pre-Processing
 
 The Seismic Design Competition typically provides time-acceleration data for time-history analysis. However, the shake table requires time-displacement data, as the motor can only determine the number of steps or angles it needs to turn, not the speed or acceleration at which it should turn. To address this, the pre-processing module offers users a method to convert time-acceleration data into time-displacement data.
