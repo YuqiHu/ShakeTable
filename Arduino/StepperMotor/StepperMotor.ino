@@ -4,7 +4,7 @@
 #define factor_of_precision 100000
 
 // 200 steps = 1 revolution = 6.9 cm of shake table movement
-const int pulse_per_revolution = 20000;
+const int pulse_per_revolution = 2000;
 const int base_steps_per_revolution = 200;
 const double speed_scale_factor = pulse_per_revolution/base_steps_per_revolution;
 const double disp_scale_factor = speed_scale_factor;
