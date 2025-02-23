@@ -109,7 +109,7 @@ namespace ShakeTableGUI.UserControls
             // The maximum displacement of the shake table is 0.06 m per side
             double displacementLimit = 0.06;
 
-            displacement = TimeDisplacementConverter.ConvertToDisplacement(time, acceleration, displacementLimit);
+            (time, displacement) = TimeDisplacementConverter.ConvertToDisplacement(time, acceleration, displacementLimit);
 
             PlotTimeDisplacementData();
             ShowTimeDisplacementDataOnDataGrid();
