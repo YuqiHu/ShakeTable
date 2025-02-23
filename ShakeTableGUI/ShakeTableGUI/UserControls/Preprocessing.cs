@@ -59,12 +59,12 @@ namespace ShakeTableGUI.UserControls
 
                 timeAccelerationDataGrid.DataSource = ImportHelper.DataTableFromTextFile(importFileTextBox.Text, unitOfAcceleration.Text, delimiterOptions.SelectedIndex, skip_header_lines);
 
-                PlotTimeAccelerationData();
+                PlotTimeAccelerationData(unitOfAcceleration.Text);
             }
         }
 
 
-        private void PlotTimeAccelerationData()
+        private void PlotTimeAccelerationData(string accelerationUnit)
         {
             // Initialize the chart
             timeAccelerationChart.Series.Clear();
@@ -97,7 +97,7 @@ namespace ShakeTableGUI.UserControls
             }
             // X and Y axies title
             timeAccelerationChart.ChartAreas[0].AxisX.Title = "Time (s)";
-            timeAccelerationChart.ChartAreas[0].AxisY.Title = "Acceleration (g)";
+            timeAccelerationChart.ChartAreas[0].AxisY.Title = $"Acceleration ({accelerationUnit})";
 
             // Increase font size of the axis titles
             timeAccelerationChart.ChartAreas[0].AxisX.TitleFont = new Font("Microsoft San Serif", 12f);
